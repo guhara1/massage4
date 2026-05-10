@@ -3,10 +3,10 @@ import { NAV, SITE } from "@/lib/site";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-100 bg-white/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-brand-200 bg-black/85 backdrop-blur">
       <div className="container-narrow flex h-16 items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-sm font-bold text-white">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-sm font-bold text-brand-50">
             VIP
           </span>
           <span className="text-lg font-bold tracking-tight text-brand-800">

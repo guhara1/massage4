@@ -200,7 +200,7 @@ export default function BookingForm() {
 }
 
 const selectStyle =
-  "w-full rounded-lg border border-brand-200 bg-white px-3 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200";
+  "w-full rounded-lg border border-brand-200 bg-brand-100 px-3 py-2.5 text-sm text-brand-800 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (

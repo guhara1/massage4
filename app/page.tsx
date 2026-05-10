@@ -78,9 +78,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="rounded-3xl bg-brand-800 px-6 py-12 text-white sm:px-12">
-        <h2 className="text-2xl font-bold sm:text-3xl">예약은 간단합니다.</h2>
-        <p className="mt-2 text-brand-100/80">
+      <section className="rounded-3xl border border-brand-200 bg-brand-100 px-6 py-12 text-brand-700 sm:px-12">
+        <h2 className="text-2xl font-bold text-brand-800 sm:text-3xl">예약은 간단합니다.</h2>
+        <p className="mt-2 text-brand-700/80">
           상담 → 예약 확정 → 테라피스트 방문 → 케어 진행 순으로 안내드립니다.
         </p>
         <ol className="mt-6 grid gap-4 sm:grid-cols-4">
@@ -90,19 +90,19 @@ export default function HomePage() {
             { n: 3, t: "방문", d: "약속 시간에 테라피스트 도착" },
             { n: 4, t: "케어", d: "선택 코스 진행 및 결제" },
           ].map((step) => (
-            <li key={step.n} className="rounded-2xl bg-brand-700/40 p-5">
-              <div className="grid h-9 w-9 place-items-center rounded-full bg-brand-300 text-sm font-bold text-brand-900">
+            <li key={step.n} className="rounded-2xl border border-brand-200 bg-brand-200/40 p-5">
+              <div className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-sm font-bold text-brand-50">
                 {step.n}
               </div>
-              <p className="mt-3 font-semibold">{step.t}</p>
-              <p className="mt-1 text-sm text-brand-100/80">{step.d}</p>
+              <p className="mt-3 font-semibold text-brand-800">{step.t}</p>
+              <p className="mt-1 text-sm text-brand-700/80">{step.d}</p>
             </li>
           ))}
         </ol>
         <div className="mt-8">
           <Link
             href="/booking"
-            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-800 transition hover:bg-brand-50"
+            className="inline-flex items-center justify-center rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-brand-50 shadow-[0_0_24px_-4px_rgba(34,197,94,0.55)] transition hover:bg-brand-600"
           >
             예약 / 문의 페이지로 이동
           </Link>
@@ -114,7 +114,7 @@ export default function HomePage() {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-brand-100 bg-white px-3 py-3">
+    <div className="rounded-xl border border-brand-200 bg-brand-100 px-3 py-3">
       <div className="text-xs text-brand-700/70">{label}</div>
       <div className="mt-1 text-sm font-semibold text-brand-800">{value}</div>
     </div>

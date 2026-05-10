@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container-narrow grid gap-10 py-12 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-sm font-bold text-white">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-sm font-bold text-brand-50">
               VIP
             </span>
             <span className="text-lg font-bold text-brand-800">{SITE.name}</span>

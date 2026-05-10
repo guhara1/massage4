@@ -10,7 +10,7 @@ export default function NoticesPage() {
         <p className="section-sub">서비스 운영 관련 안내사항입니다.</p>
       </header>
 
-      <ul className="divide-y divide-brand-100 overflow-hidden rounded-2xl border border-brand-100 bg-white">
+      <ul className="divide-y divide-brand-200 overflow-hidden rounded-2xl border border-brand-200 bg-brand-100">
         {NOTICES.map((n, i) => (
           <li key={i} className="p-6">
             <div className="flex items-baseline justify-between">
