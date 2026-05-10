@@ -10,7 +10,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "thai",
-    name: "타이 바디케어",
+    name: "타이마사지",
     summary: "전신 스트레칭 위주의 정통 타이 스타일 이완 케어",
     description:
       "지압과 스트레칭을 결합한 정통 타이 스타일 바디케어로, 장시간 앉아 일하시는 분들의 뭉친 어깨·허리 이완에 적합합니다. 시술자는 타이마사지 전문 교육 과정을 이수한 테라피스트로 구성되어 있습니다.",
@@ -23,7 +23,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "aroma",
-    name: "아로마 릴랙싱",
+    name: "아로마 마사지",
     summary: "에센셜 오일을 활용한 부드러운 이완 케어",
     description:
       "라벤더·일랑일랑 등 천연 에센셜 오일을 사용하여 부드러운 슬라이딩 동작 위주로 진행됩니다. 수면의 질 개선과 컨디션 회복을 원하시는 분께 추천드립니다.",
@@ -36,7 +36,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "swedish",
-    name: "스웨디시 바디케어",
+    name: "스웨디시 마사지",
     summary: "근육 이완에 초점을 둔 클래식 스웨디시 스타일",
     description:
       "전신을 길게 쓸어주는 이펄러지(effleurage) 동작 중심으로 혈행과 림프 순환을 돕는 클래식 스웨디시 스타일입니다. 근피로 누적·운동 후 회복기에 적합합니다.",
@@ -109,7 +109,7 @@ export const REVIEWS: Review[] = [
   {
     nickname: "이O진",
     region: "경기 성남",
-    service: "아로마 릴랙싱 60분",
+    service: "아로마 마사지 60분",
     rating: 5,
     date: "2026-04-15",
     body:
@@ -118,7 +118,7 @@ export const REVIEWS: Review[] = [
   {
     nickname: "박O호",
     region: "부산 해운대",
-    service: "타이 바디케어 120분",
+    service: "타이마사지 120분",
     rating: 4,
     date: "2026-03-28",
     body:
