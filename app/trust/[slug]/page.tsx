@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${s.name} · ${SITE.name}`,
       description: s.tagline,
     },
+    alternates: { canonical: `/trust/${slug}/` },
   };
 }
 

@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${c.name} 출장 · ${SITE.name}`,
       description: `${c.name} 출장 코스 안내 · ${c.tagline}`,
     },
+    alternates: { canonical: `/service/${slug}/` },
   };
 }
 

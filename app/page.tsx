@@ -1,7 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { SERVICES, FAQS } from "@/lib/data";
 import { PROVINCES, totalDongCount } from "@/lib/regions";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

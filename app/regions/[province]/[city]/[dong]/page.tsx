@@ -55,6 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${title} · ${SITE.name}`,
       description,
     },
+    alternates: { canonical: `/regions/${province}/${city}/${dong}` },
   };
 }
 

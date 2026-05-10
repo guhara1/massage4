@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCallBar from "@/components/FloatingCallBar";
+import { OrganizationJsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 
 const SITE_TITLE = "VIP출장 | 전국 출장마사지·홈타이 예약 안내";
@@ -51,7 +52,6 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "/",
     types: {
       "application/rss+xml": [
         { url: "/rss.xml", title: `${SITE.name} 공지사항 RSS` },
@@ -87,6 +87,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/icon.svg?v=3" />
         <link rel="apple-touch-icon" href="/apple-icon.png?v=3" />
         <link rel="shortcut icon" href="/favicon.ico?v=3" />
+        <OrganizationJsonLd />
       </head>
       <body className="min-h-screen bg-[var(--bg)] pb-24 antialiased sm:pb-0">
         <Header />
