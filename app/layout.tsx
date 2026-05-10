@@ -79,6 +79,14 @@ export default function RootLayout({
           name="naver-site-verification"
           content="482cbecb0e5b8c192b1b34f470e91955ffd58fee"
         />
+        {/* Explicit favicon links with cache-busting query string —
+            Next.js auto-emits its own icon tags but adding these
+            guarantees the new icon shows up even if browsers cached
+            the previous /favicon.ico. */}
+        <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/icon.svg?v=3" />
+        <link rel="apple-touch-icon" href="/apple-icon.png?v=3" />
+        <link rel="shortcut icon" href="/favicon.ico?v=3" />
       </head>
       <body className="min-h-screen bg-[var(--bg)] pb-24 antialiased sm:pb-0">
         <Header />
