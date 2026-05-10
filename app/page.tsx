@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
-import { SERVICES } from "@/lib/data";
+import { SERVICES, REGIONS, FAQS } from "@/lib/data";
 
 export default function HomePage() {
   return (
@@ -78,6 +78,48 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section>
+        <div className="flex items-end justify-between">
+          <div>
+            <h2 className="section-title">전국 서비스 가능 지역</h2>
+            <p className="section-sub">
+              서울 전 자치구를 포함해 전국 주요 도시까지 출장 가능합니다.
+            </p>
+          </div>
+          <Link
+            href="/regions"
+            className="text-sm font-semibold text-brand-600 hover:underline"
+          >
+            전체 보기 →
+          </Link>
+        </div>
+        <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {REGIONS.map((r) => (
+            <div key={r.name} className="card">
+              <div className="flex items-baseline justify-between">
+                <h3 className="text-lg font-bold text-brand-800">{r.name}</h3>
+                <span className="text-xs text-white/60">{r.cities.length}개 지역</span>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {r.cities.slice(0, 8).map((c) => (
+                  <span
+                    key={c}
+                    className="rounded-full bg-brand-50 px-2 py-0.5 text-xs text-brand-700"
+                  >
+                    {c}
+                  </span>
+                ))}
+                {r.cities.length > 8 && (
+                  <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs text-white/60">
+                    +{r.cities.length - 8}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="rounded-3xl border border-brand-200 bg-brand-100 px-6 py-12 text-white sm:px-12">
         <h2 className="text-2xl font-bold text-brand-800 sm:text-3xl">예약은 간단합니다.</h2>
         <p className="mt-2 text-white/80">
@@ -107,6 +149,45 @@ export default function HomePage() {
             예약 / 문의 페이지로 이동
           </Link>
         </div>
+      </section>
+
+      <section>
+        <div>
+          <h2 className="section-title">자주 묻는 질문</h2>
+          <p className="section-sub">
+            예약 전 확인하면 좋은 내용들을 모았습니다.
+          </p>
+        </div>
+        <div className="mt-6 divide-y divide-brand-200 overflow-hidden rounded-2xl border border-brand-200 bg-brand-100">
+          {FAQS.map((f, i) => (
+            <details key={i} className="group p-5 sm:p-6">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
+                <span className="text-base font-semibold text-brand-800">
+                  Q. {f.q}
+                </span>
+                <span
+                  aria-hidden
+                  className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-brand-400 text-xs text-brand-700 transition group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 text-sm leading-relaxed text-white/85">
+                {f.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-brand-200 bg-brand-100/60 p-5 text-xs leading-relaxed text-white/70 sm:p-6 sm:text-sm">
+        <p>
+          <b className="text-brand-700">고객 안내</b> · 본 사이트는 사업자
+          등록을 마친 합법 출장 바디케어 서비스 안내 페이지입니다. 이용 전
+          반드시 안전 이용 안내와 자주 묻는 질문을 확인해 주세요. 부적절한
+          요청은 정중히 거절되며, 사안에 따라 예약이 제한되거나 관계 기관에
+          통보될 수 있습니다.
+        </p>
       </section>
     </div>
   );
