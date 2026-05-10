@@ -15,16 +15,16 @@ const TRUST_PARENT_LABEL = "안전·신뢰 센터";
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-brand-200 bg-black/85 backdrop-blur">
-      <div className="container-narrow flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-sm font-bold text-brand-50">
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:gap-5 sm:px-6">
+        <Link href="/" className="flex shrink-0 items-center gap-2">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-500 text-sm font-bold text-brand-50">
             VIP
           </span>
-          <span className="text-lg font-bold tracking-tight text-brand-800">
+          <span className="whitespace-nowrap text-lg font-bold tracking-tight text-brand-800">
             {SITE.name}
           </span>
         </Link>
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-0.5 lg:flex">
           {NAV.map((item) => {
             if (item.label === SERVICE_PARENT_LABEL) {
               return <ServiceDropdown key={item.href} />;
@@ -45,17 +45,17 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50"
+                className="whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-semibold text-brand-700 transition hover:bg-brand-50 hover:text-brand-800"
               >
                 {item.label}
               </Link>
             );
           })}
         </nav>
-        <Link href="/booking" className="btn-primary hidden md:inline-flex">
+        <Link href="/booking" className="btn-primary hidden whitespace-nowrap lg:inline-flex">
           예약 문의
         </Link>
-        <Link href="/booking" className="btn-primary md:hidden">
+        <Link href="/booking" className="btn-primary lg:hidden">
           예약
         </Link>
       </div>
@@ -67,14 +67,14 @@ function DropdownTrigger({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50 group-hover:bg-brand-50 group-focus-within:bg-brand-50"
+      className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-semibold text-brand-700 transition hover:bg-brand-50 hover:text-brand-800 group-hover:bg-brand-50 group-hover:text-brand-800 group-focus-within:bg-brand-50"
     >
       {label}
       <svg
         aria-hidden
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 12 12"
-        className="h-3 w-3 fill-current transition group-hover:rotate-180"
+        className="h-2.5 w-2.5 fill-current transition group-hover:rotate-180"
       >
         <path d="M6 8.5 1.5 4h9z" />
       </svg>
