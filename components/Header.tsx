@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { NAV, SITE } from "@/lib/site";
 import { SERVICE_CATEGORIES } from "@/lib/serviceCategories";
 import { RESERVATION_SECTIONS } from "@/lib/reservationSections";
@@ -11,6 +15,8 @@ const RESERVATION_PARENT_LABEL = "예약 / 문의";
 const PRICE_PARENT_LABEL = "가격 안내";
 const GUIDE_PARENT_LABEL = "이용 가이드";
 const TRUST_PARENT_LABEL = "안전·신뢰 센터";
+
+type DropdownEntry = { href: string; title: string; desc: string };
 
 export default function Header() {
   return (
@@ -27,19 +33,89 @@ export default function Header() {
         <nav className="hidden flex-1 items-center justify-center gap-0.5 lg:flex">
           {NAV.map((item) => {
             if (item.label === SERVICE_PARENT_LABEL) {
-              return <ServiceDropdown key={item.href} />;
+              return (
+                <Dropdown
+                  key={item.href}
+                  triggerHref="/service/"
+                  triggerLabel="서비스 안내"
+                  items={[
+                    { href: "/service/", title: "출장마사지란?", desc: "서비스 전반 안내" },
+                    ...SERVICE_CATEGORIES.map((c) => ({
+                      href: `/service/${c.slug}/`,
+                      title: c.name,
+                      desc: c.tagline,
+                    })),
+                  ]}
+                />
+              );
             }
             if (item.label === RESERVATION_PARENT_LABEL) {
-              return <ReservationDropdown key={item.href} />;
+              return (
+                <Dropdown
+                  key={item.href}
+                  triggerHref="/reservation/"
+                  triggerLabel="예약 안내"
+                  items={[
+                    { href: "/reservation/", title: "예약 안내 홈", desc: "예약 절차·정책 한눈에 보기" },
+                    ...RESERVATION_SECTIONS.map((s) => ({
+                      href: `/reservation/${s.slug}/`,
+                      title: s.name,
+                      desc: s.tagline,
+                    })),
+                  ]}
+                />
+              );
             }
             if (item.label === PRICE_PARENT_LABEL) {
-              return <PriceDropdown key={item.href} />;
+              return (
+                <Dropdown
+                  key={item.href}
+                  triggerHref="/price/"
+                  triggerLabel="가격 안내"
+                  items={[
+                    { href: "/price/", title: "가격 안내 홈", desc: "정찰제 정책 한눈에 보기" },
+                    ...PRICE_SECTIONS.map((s) => ({
+                      href: `/price/${s.slug}/`,
+                      title: s.name,
+                      desc: s.tagline,
+                    })),
+                  ]}
+                />
+              );
             }
             if (item.label === GUIDE_PARENT_LABEL) {
-              return <GuideDropdown key={item.href} />;
+              return (
+                <Dropdown
+                  key={item.href}
+                  triggerHref="/guide/"
+                  triggerLabel="이용 가이드"
+                  items={[
+                    { href: "/guide/", title: "이용 가이드 홈", desc: "처음부터 능숙하게 이용하기" },
+                    ...GUIDE_SECTIONS.map((s) => ({
+                      href: `/guide/${s.slug}/`,
+                      title: s.name,
+                      desc: s.tagline,
+                    })),
+                  ]}
+                />
+              );
             }
             if (item.label === TRUST_PARENT_LABEL) {
-              return <TrustDropdown key={item.href} />;
+              return (
+                <Dropdown
+                  key={item.href}
+                  triggerHref="/trust/"
+                  triggerLabel="안전·신뢰 센터"
+                  items={[
+                    { href: "/trust/", title: "안전·신뢰 센터 홈", desc: "운영 정책·정보 보호 한눈에 보기" },
+                    ...TRUST_SECTIONS.map((s) => ({
+                      href: `/trust/${s.slug}/`,
+                      title: s.name,
+                      desc: s.tagline,
+                    })),
+                  ]}
+                />
+              );
             }
             return (
               <Link
@@ -63,167 +139,107 @@ export default function Header() {
   );
 }
 
-function DropdownTrigger({ href, label }: { href: string; label: string }) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-semibold text-brand-700 transition hover:bg-brand-50 hover:text-brand-800 group-hover:bg-brand-50 group-hover:text-brand-800 group-focus-within:bg-brand-50"
-    >
-      {label}
-      <svg
-        aria-hidden
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 12 12"
-        className="h-2.5 w-2.5 fill-current transition group-hover:rotate-180"
-      >
-        <path d="M6 8.5 1.5 4h9z" />
-      </svg>
-    </Link>
-  );
-}
-
-function DropdownPanel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="invisible absolute left-0 top-full z-50 w-64 translate-y-1 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-      <div className="overflow-hidden rounded-2xl border border-brand-300 bg-black/95 p-2 shadow-[0_20px_60px_-20px_rgba(34,197,94,0.6)] backdrop-blur">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function DropdownItem({
-  href,
-  title,
-  desc,
+function Dropdown({
+  triggerHref,
+  triggerLabel,
+  items,
 }: {
-  href: string;
-  title: string;
-  desc: string;
+  triggerHref: string;
+  triggerLabel: string;
+  items: DropdownEntry[];
 }) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  // Close on outside click / Escape
+  useEffect(() => {
+    if (!open) return;
+    function onPointerDown(e: PointerEvent) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  // Close whenever the route changes (after a link click)
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
-    <Link
-      href={href}
-      className="block rounded-xl px-3 py-2.5 transition hover:bg-brand-100"
+    <div
+      ref={wrapRef}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
     >
-      <div className="text-sm font-bold text-brand-800">{title}</div>
-      <div className="mt-0.5 text-xs text-white/70">{desc}</div>
-    </Link>
-  );
-}
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="menu"
+        onClick={() => setOpen((v) => !v)}
+        className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-semibold transition ${
+          open
+            ? "bg-brand-50 text-brand-800"
+            : "text-brand-700 hover:bg-brand-50 hover:text-brand-800"
+        }`}
+      >
+        {triggerLabel}
+        <svg
+          aria-hidden
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 12 12"
+          className={`h-2.5 w-2.5 fill-current transition ${
+            open ? "rotate-180" : ""
+          }`}
+        >
+          <path d="M6 8.5 1.5 4h9z" />
+        </svg>
+      </button>
 
-function ServiceDropdown() {
-  return (
-    <div className="group relative">
-      <DropdownTrigger href="/service/" label="서비스 안내" />
-      <DropdownPanel>
-        <DropdownItem href="/service/" title="출장마사지란?" desc="서비스 전반 안내" />
-        <div className="my-2 h-px bg-brand-200/50" />
-        {SERVICE_CATEGORIES.map((c) => (
-          <DropdownItem
-            key={c.slug}
-            href={`/service/${c.slug}/`}
-            title={c.name}
-            desc={c.tagline}
-          />
-        ))}
-      </DropdownPanel>
-    </div>
-  );
-}
+      {/* Quick-access link to the hub overview while still allowing the dropdown */}
+      <Link
+        href={triggerHref}
+        aria-hidden
+        tabIndex={-1}
+        className="sr-only"
+      >
+        {triggerLabel}
+      </Link>
 
-function ReservationDropdown() {
-  return (
-    <div className="group relative">
-      <DropdownTrigger href="/reservation/" label="예약 안내" />
-      <DropdownPanel>
-        <DropdownItem
-          href="/reservation/"
-          title="예약 안내 홈"
-          desc="예약 절차·정책 한눈에 보기"
-        />
-        <div className="my-2 h-px bg-brand-200/50" />
-        {RESERVATION_SECTIONS.map((s) => (
-          <DropdownItem
-            key={s.slug}
-            href={`/reservation/${s.slug}/`}
-            title={s.name}
-            desc={s.tagline}
-          />
-        ))}
-      </DropdownPanel>
-    </div>
-  );
-}
-
-function PriceDropdown() {
-  return (
-    <div className="group relative">
-      <DropdownTrigger href="/price/" label="가격 안내" />
-      <DropdownPanel>
-        <DropdownItem
-          href="/price/"
-          title="가격 안내 홈"
-          desc="정찰제 정책 한눈에 보기"
-        />
-        <div className="my-2 h-px bg-brand-200/50" />
-        {PRICE_SECTIONS.map((s) => (
-          <DropdownItem
-            key={s.slug}
-            href={`/price/${s.slug}/`}
-            title={s.name}
-            desc={s.tagline}
-          />
-        ))}
-      </DropdownPanel>
-    </div>
-  );
-}
-
-function GuideDropdown() {
-  return (
-    <div className="group relative">
-      <DropdownTrigger href="/guide/" label="이용 가이드" />
-      <DropdownPanel>
-        <DropdownItem
-          href="/guide/"
-          title="이용 가이드 홈"
-          desc="처음부터 능숙하게 이용하기"
-        />
-        <div className="my-2 h-px bg-brand-200/50" />
-        {GUIDE_SECTIONS.map((s) => (
-          <DropdownItem
-            key={s.slug}
-            href={`/guide/${s.slug}/`}
-            title={s.name}
-            desc={s.tagline}
-          />
-        ))}
-      </DropdownPanel>
-    </div>
-  );
-}
-
-function TrustDropdown() {
-  return (
-    <div className="group relative">
-      <DropdownTrigger href="/trust/" label="안전·신뢰 센터" />
-      <DropdownPanel>
-        <DropdownItem
-          href="/trust/"
-          title="안전·신뢰 센터 홈"
-          desc="운영 정책·정보 보호 한눈에 보기"
-        />
-        <div className="my-2 h-px bg-brand-200/50" />
-        {TRUST_SECTIONS.map((s) => (
-          <DropdownItem
-            key={s.slug}
-            href={`/trust/${s.slug}/`}
-            title={s.name}
-            desc={s.tagline}
-          />
-        ))}
-      </DropdownPanel>
+      {open && (
+        <div
+          role="menu"
+          className="absolute left-0 top-full z-50 w-64 pt-2"
+        >
+          <div className="overflow-hidden rounded-2xl border border-brand-300 bg-black/95 p-2 shadow-[0_20px_60px_-20px_rgba(34,197,94,0.6)] backdrop-blur">
+            {items.map((it, i) => (
+              <div key={it.href}>
+                {i === 1 && <div className="my-2 h-px bg-brand-200/50" />}
+                <Link
+                  role="menuitem"
+                  href={it.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-xl px-3 py-2.5 transition hover:bg-brand-100"
+                >
+                  <div className="text-sm font-bold text-brand-800">{it.title}</div>
+                  <div className="mt-0.5 text-xs text-white/70">{it.desc}</div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
