@@ -14,6 +14,7 @@ export default function BookingForm() {
   const [phone, setPhone] = useState("");
   const [agree, setAgree] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const cities = useMemo(
     () => REGIONS.find((r) => r.name === region)?.cities ?? [],
@@ -33,6 +34,19 @@ export default function BookingForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!agree) return;
+    const trimmedName = name.trim();
+    const trimmedPhone = phone.trim();
+    if (!trimmedName) {
+      setError("이름을 입력해 주세요.");
+      return;
+    }
+    if (!trimmedPhone) {
+      setError("연락처를 입력해 주세요.");
+      return;
+    }
+    setName(trimmedName);
+    setPhone(trimmedPhone);
+    setError("");
     setSubmitted(true);
   }
 
@@ -171,6 +185,12 @@ export default function BookingForm() {
           <span className="ml-1 text-xs text-brand-700/70">(필수)</span>
         </span>
       </label>
+
+      {error && (
+        <p className="text-sm font-medium text-red-600" role="alert">
+          {error}
+        </p>
+      )}
 
       <button type="submit" disabled={!agree} className="btn-primary disabled:opacity-50">
         예약 문의 보내기
