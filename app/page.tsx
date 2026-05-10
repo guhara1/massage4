@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
-import { SERVICES, REGIONS, FAQS } from "@/lib/data";
+import { SERVICES, FAQS } from "@/lib/data";
+import { PROVINCES, totalDongCount } from "@/lib/regions";
 
 export default function HomePage() {
   return (
@@ -81,9 +82,10 @@ export default function HomePage() {
       <section>
         <div className="flex items-end justify-between">
           <div>
-            <h2 className="section-title">전국 서비스 가능 지역</h2>
+            <h2 className="section-title">전국 출장 가능 지역</h2>
             <p className="section-sub">
-              서울 전 자치구를 포함해 전국 주요 도시까지 출장 가능합니다.
+              권역을 선택하면 시·군·구와 행정동까지 단계별로 확인하실 수 있습니다.
+              총 {totalDongCount()}개 행정동 운영 중.
             </p>
           </div>
           <Link
@@ -94,29 +96,35 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {REGIONS.map((r) => (
-            <div key={r.name} className="card">
-              <div className="flex items-baseline justify-between">
-                <h3 className="text-lg font-bold text-brand-800">{r.name}</h3>
-                <span className="text-xs text-white/60">{r.cities.length}개 지역</span>
-              </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {r.cities.slice(0, 8).map((c) => (
-                  <span
-                    key={c}
-                    className="rounded-full bg-brand-50 px-2 py-0.5 text-xs text-brand-700"
-                  >
-                    {c}
+          {PROVINCES.map((p, i) => {
+            const dongCount = p.cities.reduce((s, c) => s + c.dongs.length, 0);
+            return (
+              <Link
+                key={p.slug}
+                href={`/regions/${p.slug}`}
+                className="group relative overflow-hidden rounded-2xl border border-brand-200 bg-brand-100 p-6 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-[0_0_30px_-12px_rgba(34,197,94,0.45)]"
+              >
+                <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-brand-500/10 blur-2xl transition group-hover:bg-brand-500/25" />
+                <div className="relative flex items-baseline justify-between">
+                  <h3 className="text-xl font-extrabold text-brand-800">
+                    {p.shortName}
+                  </h3>
+                  <span className="text-xs font-semibold text-brand-600">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                ))}
-                {r.cities.length > 8 && (
-                  <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs text-white/60">
-                    +{r.cities.length - 8}
+                </div>
+                <p className="relative mt-1 text-xs text-white/70">{p.tagline}</p>
+                <div className="relative mt-5 flex items-center justify-between">
+                  <span className="text-xs text-white/60">
+                    시·군·구 <b className="text-brand-700">{p.cities.length}</b>
+                    <span className="mx-1.5 text-white/30">·</span>
+                    행정동 <b className="text-brand-700">{dongCount}</b>
                   </span>
-                )}
-              </div>
-            </div>
-          ))}
+                  <span aria-hidden className="text-sm text-brand-600 transition group-hover:translate-x-1">→</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
