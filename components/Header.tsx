@@ -2,9 +2,11 @@ import Link from "next/link";
 import { NAV, SITE } from "@/lib/site";
 import { SERVICE_CATEGORIES } from "@/lib/serviceCategories";
 import { RESERVATION_SECTIONS } from "@/lib/reservationSections";
+import { PRICE_SECTIONS } from "@/lib/priceSections";
 
 const SERVICE_PARENT_LABEL = "서비스 / 가격";
 const RESERVATION_PARENT_LABEL = "예약 / 문의";
+const PRICE_PARENT_LABEL = "가격 안내";
 
 export default function Header() {
   return (
@@ -25,6 +27,9 @@ export default function Header() {
             }
             if (item.label === RESERVATION_PARENT_LABEL) {
               return <ReservationDropdown key={item.href} />;
+            }
+            if (item.label === PRICE_PARENT_LABEL) {
+              return <PriceDropdown key={item.href} />;
             }
             return (
               <Link
@@ -132,6 +137,30 @@ function ReservationDropdown() {
           <DropdownItem
             key={s.slug}
             href={`/reservation/${s.slug}/`}
+            title={s.name}
+            desc={s.tagline}
+          />
+        ))}
+      </DropdownPanel>
+    </div>
+  );
+}
+
+function PriceDropdown() {
+  return (
+    <div className="group relative">
+      <DropdownTrigger href="/price/" label="가격 안내" />
+      <DropdownPanel>
+        <DropdownItem
+          href="/price/"
+          title="가격 안내 홈"
+          desc="정찰제 정책 한눈에 보기"
+        />
+        <div className="my-2 h-px bg-brand-200/50" />
+        {PRICE_SECTIONS.map((s) => (
+          <DropdownItem
+            key={s.slug}
+            href={`/price/${s.slug}/`}
             title={s.name}
             desc={s.tagline}
           />

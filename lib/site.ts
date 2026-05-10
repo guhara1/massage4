@@ -20,6 +20,7 @@ export const SITE = {
 export const NAV = [
   { href: "/", label: "홈" },
   { href: "/services", label: "서비스 / 가격" },
+  { href: "/price/", label: "가격 안내" },
   { href: "/regions", label: "지역 안내" },
   { href: "/booking", label: "예약 / 문의" },
   { href: "/reviews", label: "이용 후기" },
