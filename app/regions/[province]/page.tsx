@@ -2,6 +2,18 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PROVINCES, findProvince } from "@/lib/regions";
+import { SITE } from "@/lib/site";
+import {
+  HeroBlock,
+  WhoUsesSection,
+  PreReservationSection,
+  CoursesSection,
+  ProcessSection,
+  PriceInfoSection,
+  SafetyNoticeSection,
+  RegionFaqSection,
+  SectionHeader,
+} from "@/components/RegionContent";
 
 type Props = { params: Promise<{ province: string }> };
 
@@ -15,8 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!province) return {};
   const dongCount = province.cities.reduce((s, c) => s + c.dongs.length, 0);
   return {
-    title: `${province.shortName} 출장마사지 - ${province.cities.length}개 시·군·구 안내`,
-    description: `${province.name} ${province.cities.length}개 시·군·구, 총 ${dongCount}개 행정동에 즉시 출장 가능한 합법 바디케어 서비스. ${province.tagline}.`,
+    title: `${province.shortName} 출장마사지 이용 안내`,
+    description: `${province.name} ${province.cities.length}개 시·군·구, 총 ${dongCount}개 행정동 출장마사지·홈타이 이용 안내. 정찰제 가격, 본인 인증 후 빠른 배정.`,
+    openGraph: {
+      title: `${province.shortName} 출장마사지 · ${SITE.name}`,
+      description: `${province.name} 전 ${province.cities.length}개 시·군·구, ${dongCount}개 행정동 출장마사지·홈타이 안내.`,
+    },
   };
 }
 
@@ -29,80 +45,102 @@ export default async function ProvincePage({ params }: Props) {
   const sortedCities = [...province.cities].sort((a, b) =>
     a.name.localeCompare(b.name, "ko-KR"),
   );
+  const geoName = province.shortName;
 
   return (
-    <div className="space-y-10">
+    <article className="space-y-14">
       <nav className="flex items-center gap-2 text-xs text-white/60">
         <Link href="/regions" className="hover:text-brand-600">전국 지역</Link>
         <span aria-hidden>›</span>
         <span className="text-brand-700">{province.shortName}</span>
       </nav>
 
-      <header>
-        <span className="inline-flex items-center rounded-full border border-brand-400 bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-700">
-          {province.tagline}
-        </span>
-        <h1 className="mt-3 text-3xl font-extrabold leading-tight text-brand-900 sm:text-4xl">
-          {province.name} 출장마사지
-        </h1>
-        <p className="mt-3 text-sm leading-relaxed text-white/80 sm:text-base">
-          {province.shortName} 권역 <b className="text-brand-700">{province.cities.length}</b>개
-          시·군·구 · 총 <b className="text-brand-700">{dongCount}</b>개 행정동에서
-          출장 바디케어를 운영합니다. 원하시는 시·군·구를 선택해 주세요.
-        </p>
-      </header>
+      <HeroBlock
+        badge={province.tagline}
+        h1Top={`${province.shortName} 출장마사지 이용 안내`}
+        h1Sub={`${province.cities.length}개 시·군·구 · ${dongCount}개 행정동 출장`}
+        description={`${province.name} 권역에서 이용 가능한 출장마사지·홈타이 정보를 안내합니다. 타이·아로마·스웨디시 정찰제 가격으로 ${province.cities.length}개 시·군·구 전 지역에서 운영 중이며, 시·군·구를 선택해 행정동까지 단계별로 확인하실 수 있습니다.`}
+      />
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {sortedCities.map((city) => {
-          const sortedDongs = [...city.dongs].sort((a, b) =>
-            a.name.localeCompare(b.name, "ko-KR"),
-          );
-          return (
-            <Link
-              key={city.slug}
-              href={`/regions/${province.slug}/${city.slug}`}
-              className="group flex flex-col rounded-2xl border border-brand-200 bg-brand-100 p-5 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-[0_0_30px_-12px_rgba(34,197,94,0.45)]"
-            >
-              <div className="flex items-baseline justify-between">
-                <h2 className="text-lg font-bold text-brand-800">{city.name}</h2>
-                <span className="text-xs text-white/50">
-                  행정동{" "}
-                  <b className="ml-0.5 text-sm text-white">
-                    {city.dongs.length}
-                  </b>
-                </span>
-              </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {sortedDongs.slice(0, 5).map((dg) => (
-                  <span
-                    key={dg.slug}
-                    className="rounded-full border border-brand-300 bg-brand-200/40 px-2.5 py-0.5 text-[11px] font-medium text-white"
-                  >
-                    {dg.name}
+      <WhoUsesSection geoName={geoName} />
+
+      <section className="space-y-5">
+        <SectionHeader title={`${province.shortName} 방문 가능 지역 안내`} />
+        <p className="text-sm text-white/85">
+          {province.shortName} 권역은 아래 <b className="text-brand-700">{province.cities.length}</b>개
+          시·군·구에서 출장이 가능합니다. 시·군·구를 선택하면 해당 행정동
+          목록으로 이동합니다.
+        </p>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedCities.map((city) => {
+            const sortedDongs = [...city.dongs].sort((a, b) =>
+              a.name.localeCompare(b.name, "ko-KR"),
+            );
+            return (
+              <Link
+                key={city.slug}
+                href={`/regions/${province.slug}/${city.slug}`}
+                className="group flex flex-col rounded-2xl border border-brand-200 bg-brand-100 p-5 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-[0_0_30px_-12px_rgba(34,197,94,0.45)]"
+              >
+                <div className="flex items-baseline justify-between">
+                  <h3 className="text-lg font-bold text-brand-800">{city.name}</h3>
+                  <span className="text-xs text-white/50">
+                    행정동{" "}
+                    <b className="ml-0.5 text-sm text-white">
+                      {city.dongs.length}
+                    </b>
                   </span>
-                ))}
-                {city.dongs.length > 5 && (
-                  <span className="rounded-full border border-brand-400/60 bg-transparent px-2.5 py-0.5 text-[11px] font-semibold text-brand-600">
-                    +{city.dongs.length - 5}
-                  </span>
-                )}
-              </div>
-              <div className="mt-4 flex items-center justify-end text-sm font-semibold text-brand-600">
-                <span aria-hidden className="transition group-hover:translate-x-1">→</span>
-              </div>
-            </Link>
-          );
-        })}
+                </div>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {sortedDongs.slice(0, 5).map((dg) => (
+                    <span
+                      key={dg.slug}
+                      className="rounded-full border border-brand-300 bg-brand-200/40 px-2.5 py-0.5 text-[11px] font-medium text-white"
+                    >
+                      {dg.name}
+                    </span>
+                  ))}
+                  {city.dongs.length > 5 && (
+                    <span className="rounded-full border border-brand-400/60 bg-transparent px-2.5 py-0.5 text-[11px] font-semibold text-brand-600">
+                      +{city.dongs.length - 5}
+                    </span>
+                  )}
+                </div>
+                <div className="mt-4 flex items-center justify-end text-sm font-semibold text-brand-600">
+                  <span aria-hidden className="transition group-hover:translate-x-1">→</span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </section>
 
-      <section className="rounded-2xl border border-brand-200 bg-brand-100/60 p-5 text-sm text-white/80 sm:p-6">
-        <p>
-          <b className="text-brand-700">{province.shortName}</b> 지역에서는
-          {" "}{province.cities.length}개 시·군·구 모두 동일한 정찰제 가격이
-          적용됩니다. 시간대 또는 교통 상황에 따라 출장비가 별도 안내될 수
-          있습니다.
+      <PreReservationSection geoName={geoName} />
+      <CoursesSection />
+      <ProcessSection />
+      <PriceInfoSection geoName={geoName} />
+      <SafetyNoticeSection />
+      <RegionFaqSection geoName={geoName} />
+
+      <section className="rounded-2xl border border-brand-200 bg-brand-100 p-6 text-center sm:p-8">
+        <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">
+          {province.shortName} 즉시 예약 문의
+        </h2>
+        <p className="mt-2 text-sm text-white/80">
+          상담 후 본인 인증을 거쳐 바로 예약을 확정해 드립니다.
         </p>
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
+          <Link href="/booking" className="btn-primary">
+            예약 문의 보내기
+          </Link>
+          <a
+            href={`tel:${SITE.phone.replace(/-/g, "")}`}
+            className="btn-ghost"
+          >
+            전화 {SITE.phone}
+          </a>
+        </div>
       </section>
-    </div>
+    </article>
   );
 }
