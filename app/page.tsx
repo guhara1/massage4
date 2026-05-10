@@ -9,16 +9,16 @@ export default function HomePage() {
       <section className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
         <div>
           <span className="inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-700">
-            전국 합법 출장 바디케어
+            전국 출장마사지·홈타이 예약 안내
           </span>
           <h1 className="mt-4 text-3xl font-extrabold leading-tight text-brand-900 sm:text-5xl">
-            {SITE.name}
-            <span className="block text-brand-500">집·사무실·숙소로 찾아가는 이완 케어</span>
+            VIP출장
+            <span className="block text-brand-500">집·사무실·숙소로 찾아가는 출장마사지</span>
           </h1>
           <p className="mt-5 text-base leading-relaxed text-white/80 sm:text-lg">
-            VIP 출장은 <b>사업자 등록을 마친 합법 바디케어 출장 서비스</b>입니다.
-            타이·아로마·스웨디시 등 이완 목적의 바디케어를 자격을 갖춘
-            테라피스트가 직접 방문해 제공해 드립니다.
+            VIP출장은 전국 주요 지역에서 이용 가능한{" "}
+            <b>출장마사지·홈타이 정보</b>를 안내합니다. 타이, 아로마, 스웨디시
+            등 이완 중심의 테라피를 지역별 방문 가능 범위에 따라 확인해보세요.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link href="/booking" className="btn-primary">
