@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { NAV, SITE } from "@/lib/site";
+import { SERVICE_CATEGORIES } from "@/lib/serviceCategories";
+
+const SERVICE_PARENT_LABEL = "서비스 / 가격";
 
 export default function Header() {
   return (
@@ -14,15 +17,20 @@ export default function Header() {
           </span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV.map((item) => {
+            if (item.label === SERVICE_PARENT_LABEL) {
+              return <ServiceDropdown key={item.href} />;
+            }
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-full px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50"
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
         <Link href="/booking" className="btn-primary hidden md:inline-flex">
           예약 문의
@@ -32,5 +40,60 @@ export default function Header() {
         </Link>
       </div>
     </header>
+  );
+}
+
+function ServiceDropdown() {
+  return (
+    <div className="group relative">
+      <Link
+        href="/service/"
+        className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50 group-hover:bg-brand-50 group-focus-within:bg-brand-50"
+      >
+        서비스 안내
+        <svg
+          aria-hidden
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 12 12"
+          className="h-3 w-3 fill-current transition group-hover:rotate-180"
+        >
+          <path d="M6 8.5 1.5 4h9z" />
+        </svg>
+      </Link>
+      <div className="invisible absolute left-0 top-full z-50 w-64 translate-y-1 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <div className="overflow-hidden rounded-2xl border border-brand-300 bg-black/95 p-2 shadow-[0_20px_60px_-20px_rgba(34,197,94,0.6)] backdrop-blur">
+          <DropdownItem href="/service/" title="출장마사지란?" desc="서비스 전반 안내" />
+          <div className="my-2 h-px bg-brand-200/50" />
+          {SERVICE_CATEGORIES.map((c) => (
+            <DropdownItem
+              key={c.slug}
+              href={`/service/${c.slug}/`}
+              title={c.name}
+              desc={c.tagline}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DropdownItem({
+  href,
+  title,
+  desc,
+}: {
+  href: string;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="block rounded-xl px-3 py-2.5 transition hover:bg-brand-100"
+    >
+      <div className="text-sm font-bold text-brand-800">{title}</div>
+      <div className="mt-0.5 text-xs text-white/70">{desc}</div>
+    </Link>
   );
 }
