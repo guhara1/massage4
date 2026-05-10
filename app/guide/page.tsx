@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { GUIDE_SECTIONS } from "@/lib/guideSections";
 import { SectionHeader } from "@/components/RegionContent";
+import { Prose } from "@/components/Prose";
 
 export const metadata: Metadata = {
   title: "이용 가이드 - 처음 이용·준비·매너·오해까지",
@@ -26,11 +27,12 @@ export default function GuideOverviewPage() {
                   처음부터 능숙하게 이용하기
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                출장마사지를 처음 이용하시거나, 이미 이용 중이시지만 더 잘
+              <Prose
+                text={`출장마사지를 처음 이용하시거나, 이미 이용 중이시지만 더 잘
                 활용하고 싶으신 분께 도움이 되는 정보를 모았습니다. 단순
-                홍보가 아닌 실제 이용 시 필요한 내용 위주로 정리했습니다.
-              </p>
+                홍보가 아닌 실제 이용 시 필요한 내용 위주로 정리했습니다.`}
+                className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+              />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/booking" className="btn-primary">

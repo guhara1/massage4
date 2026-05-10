@@ -7,6 +7,7 @@ import {
   findServiceCategory,
 } from "@/lib/serviceCategories";
 import { SectionHeader } from "@/components/RegionContent";
+import { Prose } from "@/components/Prose";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -56,9 +57,10 @@ export default async function ServiceDetailPage({ params }: Props) {
                   {c.tagline}
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                {c.intro}
-              </p>
+              <Prose
+                text={c.intro}
+                className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+              />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/booking" className="btn-primary">

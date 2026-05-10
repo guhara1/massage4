@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { RESERVATION_SECTIONS } from "@/lib/reservationSections";
 import { SectionHeader } from "@/components/RegionContent";
+import { Prose } from "@/components/Prose";
 
 export const metadata: Metadata = {
   title: "예약 안내 - 절차·시간·결제·확인사항 한눈에 보기",
@@ -26,11 +27,12 @@ export default function ReservationOverviewPage() {
                   절차·시간·결제까지 한 페이지
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                VIP출장 예약과 관련된 모든 정보를 한곳에 정리했습니다. 처음
+              <Prose
+                text={`VIP출장 예약과 관련된 모든 정보를 한곳에 정리했습니다. 처음
                 이용하시는 분이라면 아래 항목을 차례대로 살펴보시면 매끄럽게
-                예약을 진행하실 수 있습니다.
-              </p>
+                예약을 진행하실 수 있습니다.`}
+                className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+              />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/booking" className="btn-primary">

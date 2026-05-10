@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { TRUST_SECTIONS } from "@/lib/trustSections";
 import { SectionHeader } from "@/components/RegionContent";
+import { Prose } from "@/components/Prose";
 
 export const metadata: Metadata = {
   title: "안전·신뢰 센터 - 운영 원칙·테라피스트 기준·고객 보호",
@@ -26,11 +27,12 @@ export default function TrustOverviewPage() {
                   운영 원칙과 정보 보호 기준
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                VIP출장이 어떤 원칙으로 운영되는지, 테라피스트는 어떻게
+              <Prose
+                text={`VIP출장이 어떤 원칙으로 운영되는지, 테라피스트는 어떻게
                 관리되는지, 이용자 정보는 어떻게 보호되는지 한곳에 정리했습니다.
-                개인정보 처리방침과 이용약관도 본 센터에서 확인하실 수 있습니다.
-              </p>
+                개인정보 처리방침과 이용약관도 본 센터에서 확인하실 수 있습니다.`}
+                className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+              />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/booking" className="btn-primary">

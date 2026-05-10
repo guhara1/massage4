@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { PRICE_SECTIONS } from "@/lib/priceSections";
 import { SectionHeader } from "@/components/RegionContent";
+import { Prose } from "@/components/Prose";
 
 export const metadata: Metadata = {
   title: "가격 안내 - 정찰제 정책·코스·지역·추가비용 한눈에",
@@ -26,11 +27,12 @@ export default function PriceOverviewPage() {
                   정찰제·추가비용·주의사항 한 페이지
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                VIP출장의 모든 가격 정보를 한곳에 정리했습니다. 코스별 기본
+              <Prose
+                text={`VIP출장의 모든 가격 정보를 한곳에 정리했습니다. 코스별 기본
                 가격, 지역별 출장비 정책, 시간 길이에 따른 차이, 그리고
-                가격 확인 시 주의해야 할 점까지 항목별로 자세히 안내드립니다.
-              </p>
+                가격 확인 시 주의해야 할 점까지 항목별로 자세히 안내드립니다.`}
+                className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+              />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/booking" className="btn-primary">

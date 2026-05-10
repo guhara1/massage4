@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { SERVICE_CATEGORIES } from "@/lib/serviceCategories";
 import { SectionHeader } from "@/components/RegionContent";
+import { Prose } from "@/components/Prose";
 
 export const metadata: Metadata = {
   title: "출장마사지란? - 코스 종류와 선택 가이드",
@@ -26,12 +27,13 @@ export default function ServiceOverviewPage() {
                   코스 종류와 선택 가이드
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                출장마사지는 매장이 아닌 자택·오피스·숙소로 테라피스트가 직접
+              <Prose
+                text={`출장마사지는 매장이 아닌 자택·오피스·숙소로 테라피스트가 직접
                 방문해 진행하는 바디 케어 서비스입니다. 이동·대기 시간 없이
                 편안한 공간에서 받을 수 있다는 장점이 있으며, 코스에 따라
-                효과와 추천 대상이 달라집니다.
-              </p>
+                효과와 추천 대상이 달라집니다.`}
+                className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+              />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/booking" className="btn-primary">

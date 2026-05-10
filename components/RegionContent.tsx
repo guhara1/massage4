@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SERVICES } from "@/lib/data";
 import { SITE } from "@/lib/site";
+import { Prose } from "@/components/Prose";
 import {
   pickN,
   pickOne,
@@ -43,9 +44,10 @@ function CardList({
             <span aria-hidden className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
             <div>
               <h3 className="text-sm font-bold text-brand-800">{it.t}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-white/85">
-                {it.d(geoName)}
-              </p>
+              <Prose
+                text={it.d(geoName)}
+                className="mt-1 text-sm leading-relaxed text-white/85"
+              />
             </div>
           </div>
         </li>
@@ -66,7 +68,7 @@ export function WhoUsesSection({
   return (
     <section className="space-y-5">
       <SectionHeader title={`${geoName} 출장마사지, 어떤 분들이 많이 찾을까?`} />
-      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <Prose text={intro} className="text-sm leading-relaxed text-white/85" />
       <CardList items={items} geoName={geoName} />
     </section>
   );
@@ -84,7 +86,7 @@ export function PreReservationSection({
   return (
     <section className="space-y-5">
       <SectionHeader title={`${geoName} 출장마사지 예약 전 확인할 점`} />
-      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <Prose text={intro} className="text-sm leading-relaxed text-white/85" />
       <CardList items={items} geoName={geoName} />
     </section>
   );
@@ -148,7 +150,7 @@ export function ProcessSection({
   return (
     <section className="space-y-5">
       <SectionHeader title="예약부터 방문까지 진행 절차" />
-      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <Prose text={intro} className="text-sm leading-relaxed text-white/85" />
       <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {steps.map((s) => (
           <li
@@ -178,7 +180,7 @@ export function PriceInfoSection({
   return (
     <section className="space-y-5">
       <SectionHeader title="가격·운영시간·추가비용 안내" />
-      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <Prose text={intro} className="text-sm leading-relaxed text-white/85" />
       <div className="grid gap-4 md:grid-cols-3">
         <div className="rounded-2xl border border-brand-200 bg-brand-100 p-5">
           <h3 className="text-sm font-bold text-brand-700">정찰제 가격</h3>
@@ -220,7 +222,7 @@ export function SafetyNoticeSection({ slug }: { slug: string }) {
   return (
     <section className="space-y-5">
       <SectionHeader title="안전하고 건전한 이용을 위한 안내" />
-      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <Prose text={intro} className="text-sm leading-relaxed text-white/85" />
       <div className="rounded-2xl border border-brand-200 bg-brand-100 p-6">
         <ul className="space-y-2.5 text-sm leading-relaxed text-white/90">
           <li className="flex gap-2">
@@ -261,7 +263,7 @@ export function RegionFaqSection({
   return (
     <section className="space-y-5">
       <SectionHeader title={`${geoName} 출장마사지 자주 묻는 질문`} />
-      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <Prose text={intro} className="text-sm leading-relaxed text-white/85" />
       <div className="divide-y divide-brand-200 overflow-hidden rounded-2xl border border-brand-200 bg-brand-100">
         {items.map((f, i) => (
           <details key={i} className="group p-5 sm:p-6">
@@ -276,9 +278,10 @@ export function RegionFaqSection({
                 +
               </span>
             </summary>
-            <p className="mt-3 text-sm leading-relaxed text-white/85">
-              {f.a(geoName)}
-            </p>
+            <Prose
+              text={f.a(geoName)}
+              className="mt-3 text-sm leading-relaxed text-white/85"
+            />
           </details>
         ))}
       </div>
@@ -311,9 +314,10 @@ export function HeroBlock({
                 {h1Sub}
               </span>
             </h1>
-            <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-              {description}
-            </p>
+            <Prose
+              text={description}
+              className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+            />
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/booking" className="btn-primary">

@@ -7,6 +7,7 @@ import {
   findReservationSection,
 } from "@/lib/reservationSections";
 import { SectionHeader } from "@/components/RegionContent";
+import { Prose } from "@/components/Prose";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -56,9 +57,10 @@ export default async function ReservationDetailPage({ params }: Props) {
                   {s.tagline}
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                {s.intro}
-              </p>
+              <Prose
+                text={s.intro}
+                className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"
+              />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/booking" className="btn-primary">
@@ -85,9 +87,10 @@ export default async function ReservationDetailPage({ params }: Props) {
         <section key={section.title} className="space-y-5">
           <SectionHeader title={section.title} />
           {section.body && (
-            <div className="rounded-2xl border border-brand-200 bg-brand-100 p-5 text-sm leading-relaxed text-white/85 sm:p-6">
-              {section.body}
-            </div>
+            <Prose
+              text={section.body}
+              className="rounded-2xl border border-brand-200 bg-brand-100 p-5 text-sm leading-relaxed text-white/85 sm:p-6"
+            />
           )}
           {section.items && (
             <ul className="rounded-2xl border border-brand-200 bg-brand-100 p-5 sm:p-6">
@@ -121,7 +124,7 @@ export default async function ReservationDetailPage({ params }: Props) {
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-white/85">{f.a}</p>
+              <Prose text={f.a} className="mt-3 text-sm leading-relaxed text-white/85" />
             </details>
           ))}
         </div>
