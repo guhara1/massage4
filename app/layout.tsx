@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 
 const SITE_TITLE = "VIP출장 | 전국 출장마사지·홈타이 예약 안내";
 const SITE_DESCRIPTION =
-  "VIP출장은 전국 주요 지역 출장마사지와 홈타이 이용 정보를 안내합니다. 지역별 방문 가능 여부, 코스, 예약 전 확인사항을 한눈에 확인해보세요.";
+  "전국 출장마사지·홈타이 이용 정보. 지역별 방문 범위·코스·가격·예약 절차를 한곳에서 확인하세요.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://massage4.pages.dev"),
