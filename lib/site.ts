@@ -3,7 +3,7 @@ export const SITE = {
   tagline: "전국 합법 바디케어 출장 예약 플랫폼",
   description:
     "VIP 출장은 사업자 등록을 마친 합법 바디케어 출장 서비스입니다. 타이·아로마·스웨디시 등 이완 목적의 바디케어를 자격을 갖춘 테라피스트가 자택, 사무실, 숙소로 직접 방문해 제공해 드립니다.",
-  phone: "1588-0000",
+  phone: "0508-202-4683",
   kakao: "@vip-chuljang",
   email: "help@vip-chuljang.example",
   hours: "매일 10:00 ~ 익일 02:00 (연중무휴)",
