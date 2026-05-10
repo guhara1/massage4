@@ -298,26 +298,41 @@ export function HeroBlock({
   description: string;
 }) {
   return (
-    <header className="rounded-3xl border border-brand-200 bg-brand-100 p-7 sm:p-10">
-      <span className="inline-flex items-center rounded-full border border-brand-400 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-        {badge}
-      </span>
-      <h1 className="mt-3 text-3xl font-extrabold leading-tight text-brand-900 sm:text-4xl lg:text-5xl">
-        {h1Top}
-        <span className="mt-1 block text-brand-500 sm:text-3xl lg:text-4xl">
-          {h1Sub}
-        </span>
-      </h1>
-      <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-        {description}
-      </p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Link href="/booking" className="btn-primary">
-          예약 문의하기
-        </Link>
-        <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
-          전화 상담 {SITE.phone}
-        </a>
+    <header className="overflow-hidden rounded-3xl border border-brand-200 bg-brand-100 shadow-[0_0_60px_-15px_rgba(34,197,94,0.45)]">
+      <div className="grid items-stretch md:grid-cols-3">
+        <div className="flex flex-col justify-between gap-6 p-7 sm:p-10 md:col-span-2">
+          <div>
+            <span className="inline-flex items-center rounded-full border border-brand-400 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
+              {badge}
+            </span>
+            <h1 className="mt-3 text-3xl font-extrabold leading-tight text-brand-900 sm:text-4xl lg:text-5xl">
+              {h1Top}
+              <span className="mt-1 block text-brand-500 sm:text-3xl lg:text-4xl">
+                {h1Sub}
+              </span>
+            </h1>
+            <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
+              {description}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/booking" className="btn-primary">
+              예약 문의하기
+            </Link>
+            <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
+              전화 상담 {SITE.phone}
+            </a>
+          </div>
+        </div>
+        <div className="relative min-h-[280px] border-t border-brand-300 md:col-span-1 md:min-h-0 md:border-l md:border-t-0">
+          <img
+            src="/hero-vip.jpg"
+            alt={`${h1Top} 안내 - 출장마사지 관리사`}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-brand-100/40 md:bg-gradient-to-r md:from-brand-100/40 md:via-transparent md:to-transparent" />
+        </div>
       </div>
     </header>
   );
