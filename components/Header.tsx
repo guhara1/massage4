@@ -3,10 +3,12 @@ import { NAV, SITE } from "@/lib/site";
 import { SERVICE_CATEGORIES } from "@/lib/serviceCategories";
 import { RESERVATION_SECTIONS } from "@/lib/reservationSections";
 import { PRICE_SECTIONS } from "@/lib/priceSections";
+import { GUIDE_SECTIONS } from "@/lib/guideSections";
 
 const SERVICE_PARENT_LABEL = "서비스 / 가격";
 const RESERVATION_PARENT_LABEL = "예약 / 문의";
 const PRICE_PARENT_LABEL = "가격 안내";
+const GUIDE_PARENT_LABEL = "이용 가이드";
 
 export default function Header() {
   return (
@@ -30,6 +32,9 @@ export default function Header() {
             }
             if (item.label === PRICE_PARENT_LABEL) {
               return <PriceDropdown key={item.href} />;
+            }
+            if (item.label === GUIDE_PARENT_LABEL) {
+              return <GuideDropdown key={item.href} />;
             }
             return (
               <Link
@@ -161,6 +166,30 @@ function PriceDropdown() {
           <DropdownItem
             key={s.slug}
             href={`/price/${s.slug}/`}
+            title={s.name}
+            desc={s.tagline}
+          />
+        ))}
+      </DropdownPanel>
+    </div>
+  );
+}
+
+function GuideDropdown() {
+  return (
+    <div className="group relative">
+      <DropdownTrigger href="/guide/" label="이용 가이드" />
+      <DropdownPanel>
+        <DropdownItem
+          href="/guide/"
+          title="이용 가이드 홈"
+          desc="처음부터 능숙하게 이용하기"
+        />
+        <div className="my-2 h-px bg-brand-200/50" />
+        {GUIDE_SECTIONS.map((s) => (
+          <DropdownItem
+            key={s.slug}
+            href={`/guide/${s.slug}/`}
             title={s.name}
             desc={s.tagline}
           />
