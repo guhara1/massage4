@@ -67,6 +67,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        {/* Search engine verification — duplicated as raw <meta> tags
+            so the tokens always appear in <head> regardless of how
+            Next.js orders metadata fields. */}
+        <meta
+          name="google-site-verification"
+          content="tLvzDmZ30YWnEXQJb7t1JHxf1OROGMjRlc_Yk5PiBkw"
+        />
+        <meta
+          name="naver-site-verification"
+          content="482cbecb0e5b8c192b1b34f470e91955ffd58fee"
+        />
+      </head>
       <body className="min-h-screen bg-[var(--bg)] pb-24 antialiased sm:pb-0">
         <Header />
         <main className="container-narrow py-10 sm:py-14">{children}</main>
