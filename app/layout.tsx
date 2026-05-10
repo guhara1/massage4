@@ -10,6 +10,7 @@ const SITE_DESCRIPTION =
   "VIP출장은 전국 주요 지역 출장마사지와 홈타이 이용 정보를 안내합니다. 지역별 방문 가능 여부, 코스, 예약 전 확인사항을 한눈에 확인해보세요.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://massage4.pages.dev"),
   title: {
     default: SITE_TITLE,
     template: `%s | ${SITE.name}`,
@@ -26,11 +27,20 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     type: "website",
     locale: "ko_KR",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: SITE_TITLE,
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: ["/og-image.jpg"],
   },
   robots: { index: true, follow: true },
 };

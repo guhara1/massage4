@@ -36,16 +36,17 @@ export default function HomePage() {
           </dl>
         </div>
 
-        <div className="card relative overflow-hidden">
-          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-100 blur-2xl" />
-          <h2 className="text-lg font-bold text-brand-800">합법·안전 운영 약속</h2>
-          <ul className="mt-4 space-y-3 text-sm text-white/85">
-            <Bullet>사업자 등록 후 <b>이완 목적 바디케어</b>로 정식 운영</Bullet>
-            <Bullet>스포츠마사지·아로마테라피 등 <b>관련 자격 보유자</b> 우선 채용</Bullet>
-            <Bullet><b>정찰제 가격</b>·시간 단위 안내로 추가 결제 요구 없음</Bullet>
-            <Bullet>예약 시 <b>본인 인증</b> 후 확정 — 익명 예약 불가</Bullet>
-            <Bullet>성적 서비스·의료 행위 요청은 <b>전면 거절</b></Bullet>
-          </ul>
+        <div className="relative overflow-hidden rounded-3xl border border-brand-300 bg-brand-100 shadow-[0_0_60px_-15px_rgba(34,197,94,0.55)]">
+          <div className="aspect-square w-full overflow-hidden">
+            <img
+              src="/hero-vip.jpg"
+              alt="VIP출장 - 전국 출장마사지·홈타이 안내"
+              className="h-full w-full object-cover"
+              width={1024}
+              height={1024}
+              loading="eager"
+            />
+          </div>
         </div>
       </section>
 
