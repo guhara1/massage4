@@ -6,7 +6,7 @@ export const SITE = {
   phone: "0508-202-4683",
   kakao: "@vip-chuljang",
   email: "help@vip-chuljang.example",
-  hours: "매일 10:00 ~ 익일 02:00 (연중무휴)",
+  hours: "매일 13:00 ~ 익일 08:00 (연중무휴)",
   address: "서울특별시 강남구 (본사)",
   business: {
     name: "VIP 출장",
