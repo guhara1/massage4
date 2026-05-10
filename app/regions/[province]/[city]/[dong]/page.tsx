@@ -42,7 +42,10 @@ export default async function DongPage({ params }: Props) {
   if (!found) notFound();
   const { province, city, dong } = found;
 
-  const siblings = city.dongs.filter((d) => d.slug !== dong.slug).slice(0, 8);
+  const siblings = city.dongs
+    .filter((d) => d.slug !== dong.slug)
+    .sort((a, b) => a.name.localeCompare(b.name, "ko-KR"))
+    .slice(0, 8);
   const fullName = `${province.shortName} ${city.name} ${dong.name}`;
 
   return (
@@ -156,7 +159,7 @@ export default async function DongPage({ params }: Props) {
               <Link
                 key={sib.slug}
                 href={`/regions/${province.slug}/${city.slug}/${sib.slug}`}
-                className="rounded-full border border-brand-200 bg-brand-100 px-3 py-1.5 text-sm text-brand-700 transition hover:border-brand-500 hover:bg-brand-200/40"
+                className="rounded-full border border-brand-300 bg-brand-100 px-3 py-1.5 text-sm font-medium text-white transition hover:border-brand-500 hover:bg-brand-200/40 hover:text-brand-800"
               >
                 {sib.name}
               </Link>

@@ -26,6 +26,9 @@ export default async function ProvincePage({ params }: Props) {
   if (!province) notFound();
 
   const dongCount = province.cities.reduce((s, c) => s + c.dongs.length, 0);
+  const sortedCities = [...province.cities].sort((a, b) =>
+    a.name.localeCompare(b.name, "ko-KR"),
+  );
 
   return (
     <div className="space-y-10">
@@ -50,38 +53,46 @@ export default async function ProvincePage({ params }: Props) {
       </header>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {province.cities.map((city) => (
-          <Link
-            key={city.slug}
-            href={`/regions/${province.slug}/${city.slug}`}
-            className="group flex flex-col rounded-2xl border border-brand-200 bg-brand-100 p-5 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-[0_0_30px_-12px_rgba(34,197,94,0.45)]"
-          >
-            <div className="flex items-baseline justify-between">
-              <h2 className="text-lg font-bold text-brand-800">{city.name}</h2>
-              <span className="text-xs text-white/60">
-                행정동 {city.dongs.length}
-              </span>
-            </div>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {city.dongs.slice(0, 5).map((dg) => (
-                <span
-                  key={dg.slug}
-                  className="rounded-full bg-brand-50 px-2 py-0.5 text-[11px] text-brand-700"
-                >
-                  {dg.name}
+        {sortedCities.map((city) => {
+          const sortedDongs = [...city.dongs].sort((a, b) =>
+            a.name.localeCompare(b.name, "ko-KR"),
+          );
+          return (
+            <Link
+              key={city.slug}
+              href={`/regions/${province.slug}/${city.slug}`}
+              className="group flex flex-col rounded-2xl border border-brand-200 bg-brand-100 p-5 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-[0_0_30px_-12px_rgba(34,197,94,0.45)]"
+            >
+              <div className="flex items-baseline justify-between">
+                <h2 className="text-lg font-bold text-brand-800">{city.name}</h2>
+                <span className="text-xs text-white/50">
+                  행정동{" "}
+                  <b className="ml-0.5 text-sm text-white">
+                    {city.dongs.length}
+                  </b>
                 </span>
-              ))}
-              {city.dongs.length > 5 && (
-                <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[11px] text-white/60">
-                  +{city.dongs.length - 5}
-                </span>
-              )}
-            </div>
-            <div className="mt-4 flex items-center justify-end text-sm font-semibold text-brand-600">
-              <span aria-hidden className="transition group-hover:translate-x-1">→</span>
-            </div>
-          </Link>
-        ))}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {sortedDongs.slice(0, 5).map((dg) => (
+                  <span
+                    key={dg.slug}
+                    className="rounded-full border border-brand-300 bg-brand-200/40 px-2.5 py-0.5 text-[11px] font-medium text-white"
+                  >
+                    {dg.name}
+                  </span>
+                ))}
+                {city.dongs.length > 5 && (
+                  <span className="rounded-full border border-brand-400/60 bg-transparent px-2.5 py-0.5 text-[11px] font-semibold text-brand-600">
+                    +{city.dongs.length - 5}
+                  </span>
+                )}
+              </div>
+              <div className="mt-4 flex items-center justify-end text-sm font-semibold text-brand-600">
+                <span aria-hidden className="transition group-hover:translate-x-1">→</span>
+              </div>
+            </Link>
+          );
+        })}
       </section>
 
       <section className="rounded-2xl border border-brand-200 bg-brand-100/60 p-5 text-sm text-white/80 sm:p-6">

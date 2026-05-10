@@ -27,6 +27,9 @@ export default async function CityPage({ params }: Props) {
   const found = findCity(provinceSlug, citySlug);
   if (!found) notFound();
   const { province, city } = found;
+  const sortedDongs = [...city.dongs].sort((a, b) =>
+    a.name.localeCompare(b.name, "ko-KR"),
+  );
 
   return (
     <div className="space-y-10">
@@ -55,13 +58,13 @@ export default async function CityPage({ params }: Props) {
       </header>
 
       <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {city.dongs.map((dong) => (
+        {sortedDongs.map((dong) => (
           <Link
             key={dong.slug}
             href={`/regions/${province.slug}/${city.slug}/${dong.slug}`}
-            className="group flex items-center justify-between rounded-xl border border-brand-200 bg-brand-100 px-4 py-3.5 transition hover:border-brand-500 hover:bg-brand-200/40"
+            className="group flex items-center justify-between rounded-xl border border-brand-300 bg-brand-100 px-4 py-3.5 transition hover:border-brand-500 hover:bg-brand-200/40"
           >
-            <span className="text-sm font-semibold text-brand-800 group-hover:text-brand-700">
+            <span className="text-sm font-semibold text-white group-hover:text-brand-800">
               {dong.name}
             </span>
             <span aria-hidden className="text-xs text-brand-600 transition group-hover:translate-x-1">
