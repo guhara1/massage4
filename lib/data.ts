@@ -1,0 +1,163 @@
+export type Service = {
+  slug: string;
+  name: string;
+  summary: string;
+  description: string;
+  durations: { minutes: number; price: number }[];
+  highlights: string[];
+};
+
+export const SERVICES: Service[] = [
+  {
+    slug: "thai",
+    name: "타이 바디케어",
+    summary: "전신 스트레칭 위주의 정통 타이 스타일 이완 케어",
+    description:
+      "지압과 스트레칭을 결합한 정통 타이 스타일 바디케어로, 장시간 앉아 일하시는 분들의 뭉친 어깨·허리 이완에 적합합니다. 시술자는 타이마사지 전문 교육 과정을 이수한 테라피스트로 구성되어 있습니다.",
+    durations: [
+      { minutes: 60, price: 80000 },
+      { minutes: 90, price: 110000 },
+      { minutes: 120, price: 140000 },
+    ],
+    highlights: ["전신 스트레칭", "지압 위주", "장시간 좌식 직업군 추천"],
+  },
+  {
+    slug: "aroma",
+    name: "아로마 릴랙싱",
+    summary: "에센셜 오일을 활용한 부드러운 이완 케어",
+    description:
+      "라벤더·일랑일랑 등 천연 에센셜 오일을 사용하여 부드러운 슬라이딩 동작 위주로 진행됩니다. 수면의 질 개선과 컨디션 회복을 원하시는 분께 추천드립니다.",
+    durations: [
+      { minutes: 60, price: 90000 },
+      { minutes: 90, price: 120000 },
+      { minutes: 120, price: 150000 },
+    ],
+    highlights: ["천연 에센셜 오일 사용", "부드러운 슬라이딩", "수면·컨디션 회복"],
+  },
+  {
+    slug: "swedish",
+    name: "스웨디시 바디케어",
+    summary: "근육 이완에 초점을 둔 클래식 스웨디시 스타일",
+    description:
+      "전신을 길게 쓸어주는 이펄러지(effleurage) 동작 중심으로 혈행과 림프 순환을 돕는 클래식 스웨디시 스타일입니다. 근피로 누적·운동 후 회복기에 적합합니다.",
+    durations: [
+      { minutes: 60, price: 90000 },
+      { minutes: 90, price: 120000 },
+      { minutes: 120, price: 150000 },
+    ],
+    highlights: ["근피로 회복", "혈행·림프 순환", "운동 후 추천"],
+  },
+];
+
+export type Region = {
+  name: string;
+  cities: string[];
+};
+
+export const REGIONS: Region[] = [
+  {
+    name: "서울",
+    cities: [
+      "강남", "서초", "송파", "강동", "성동", "광진", "용산", "중구", "종로",
+      "마포", "서대문", "은평", "노원", "도봉", "강북", "성북", "동대문",
+      "중랑", "구로", "금천", "영등포", "동작", "관악", "양천", "강서",
+    ],
+  },
+  {
+    name: "경기·인천",
+    cities: [
+      "수원", "성남", "용인", "고양", "화성", "부천", "남양주", "안양", "안산",
+      "평택", "의정부", "시흥", "파주", "김포", "광명", "광주", "군포", "하남",
+      "오산", "이천", "양주", "구리", "인천 중구", "인천 남동", "인천 부평", "인천 서구",
+    ],
+  },
+  {
+    name: "충청·강원",
+    cities: ["대전", "세종", "청주", "천안", "아산", "춘천", "원주", "강릉"],
+  },
+  {
+    name: "영남",
+    cities: [
+      "부산 해운대", "부산 서면", "부산 동래", "울산", "대구", "포항", "창원", "김해", "경주",
+    ],
+  },
+  {
+    name: "호남·제주",
+    cities: ["광주", "전주", "여수", "순천", "목포", "제주", "서귀포"],
+  },
+];
+
+export type Review = {
+  nickname: string;
+  region: string;
+  service: string;
+  rating: number;
+  date: string;
+  body: string;
+};
+
+export const REVIEWS: Review[] = [
+  {
+    nickname: "김O민",
+    region: "서울 강남",
+    service: "스웨디시 90분",
+    rating: 5,
+    date: "2026-04-22",
+    body:
+      "야근이 길었던 주에 예약했는데 어깨 뭉친 게 한결 풀렸어요. 시간 약속도 정확했고 시술 환경도 깔끔했습니다.",
+  },
+  {
+    nickname: "이O진",
+    region: "경기 성남",
+    service: "아로마 릴랙싱 60분",
+    rating: 5,
+    date: "2026-04-15",
+    body:
+      "오일 향이 과하지 않아서 좋았고, 시술자분이 강도를 자주 물어봐 주셔서 편하게 받았습니다.",
+  },
+  {
+    nickname: "박O호",
+    region: "부산 해운대",
+    service: "타이 바디케어 120분",
+    rating: 4,
+    date: "2026-03-28",
+    body:
+      "스트레칭 위주라 다음 날 몸이 가벼웠습니다. 출장 가능 시간대가 넓어서 만족했어요.",
+  },
+  {
+    nickname: "정O연",
+    region: "서울 마포",
+    service: "스웨디시 60분",
+    rating: 5,
+    date: "2026-03-10",
+    body:
+      "예약 응대도 친절하고 가격이 명확히 안내되어서 신뢰가 갔습니다. 재예약 의사 있어요.",
+  },
+];
+
+export type Notice = {
+  date: string;
+  title: string;
+  body: string;
+};
+
+export const NOTICES: Notice[] = [
+  {
+    date: "2026-05-01",
+    title: "5월 가정의 달 정상 운영 안내",
+    body:
+      "5월 한 달 간 별도 휴무 없이 정상 운영합니다. 어버이날 등 특정 일자에는 예약이 조기 마감될 수 있으니 사전 예약을 권장드립니다.",
+  },
+  {
+    date: "2026-04-12",
+    title: "예약 시 본인 확인 절차 안내",
+    body:
+      "안전한 서비스 제공을 위해 신규 예약 시 휴대전화 본인 인증 후 예약이 확정됩니다. 익명 예약은 받지 않습니다.",
+  },
+  {
+    date: "2026-03-20",
+    title: "테라피스트 신규 채용 (자격증 보유자 우대)",
+    body:
+      "스포츠마사지·아로마테라피·타이마사지 관련 자격증 보유자를 우선 채용합니다. 자세한 사항은 채용 메일로 문의 바랍니다.",
+  },
+];
