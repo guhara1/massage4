@@ -13,7 +13,9 @@ import {
   SafetyNoticeSection,
   RegionFaqSection,
   SectionHeader,
+  makeHeroDescription,
 } from "@/components/RegionContent";
+import { makeTitle, makeDescription } from "@/lib/regionVariants";
 
 type Props = { params: Promise<{ province: string }> };
 
@@ -26,12 +28,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const province = findProvince(provinceSlug);
   if (!province) return {};
   const dongCount = province.cities.reduce((s, c) => s + c.dongs.length, 0);
+  const slug = `province-${provinceSlug}`;
+  const title = makeTitle(slug, province.shortName);
+  const description = makeDescription({
+    slug,
+    full: province.name,
+    short: province.shortName,
+    count: province.cities.length,
+    countLabel: "시·군·구",
+    hours: SITE.hours,
+  });
   return {
-    title: `${province.shortName} 출장마사지 이용 안내`,
-    description: `${province.name} ${province.cities.length}개 시·군·구, 총 ${dongCount}개 행정동 출장마사지·홈타이 이용 안내. 정찰제 가격, 본인 인증 후 빠른 배정.`,
+    title,
+    description,
     openGraph: {
-      title: `${province.shortName} 출장마사지 · ${SITE.name}`,
-      description: `${province.name} 전 ${province.cities.length}개 시·군·구, ${dongCount}개 행정동 출장마사지·홈타이 안내.`,
+      title: `${title} · ${SITE.name}`,
+      description,
+    },
+    other: {
+      "dong-count": String(dongCount),
     },
   };
 }
@@ -46,6 +61,8 @@ export default async function ProvincePage({ params }: Props) {
     a.name.localeCompare(b.name, "ko-KR"),
   );
   const geoName = province.shortName;
+  const slug = `province-${provinceSlug}`;
+  const heroDesc = makeHeroDescription(slug, province.name);
 
   return (
     <article className="space-y-14">
@@ -59,10 +76,10 @@ export default async function ProvincePage({ params }: Props) {
         badge={province.tagline}
         h1Top={`${province.shortName} 출장마사지 이용 안내`}
         h1Sub={`${province.cities.length}개 시·군·구 · ${dongCount}개 행정동 출장`}
-        description={`${province.name} 권역에서 이용 가능한 출장마사지·홈타이 정보를 안내합니다. 타이·아로마·스웨디시 정찰제 가격으로 ${province.cities.length}개 시·군·구 전 지역에서 운영 중이며, 시·군·구를 선택해 행정동까지 단계별로 확인하실 수 있습니다.`}
+        description={heroDesc}
       />
 
-      <WhoUsesSection geoName={geoName} />
+      <WhoUsesSection geoName={geoName} slug={slug} />
 
       <section className="space-y-5">
         <SectionHeader title={`${province.shortName} 방문 가능 지역 안내`} />
@@ -115,12 +132,12 @@ export default async function ProvincePage({ params }: Props) {
         </div>
       </section>
 
-      <PreReservationSection geoName={geoName} />
-      <CoursesSection />
-      <ProcessSection />
-      <PriceInfoSection geoName={geoName} />
-      <SafetyNoticeSection />
-      <RegionFaqSection geoName={geoName} />
+      <PreReservationSection geoName={geoName} slug={slug} />
+      <CoursesSection slug={slug} />
+      <ProcessSection geoName={geoName} slug={slug} />
+      <PriceInfoSection geoName={geoName} slug={slug} />
+      <SafetyNoticeSection slug={slug} />
+      <RegionFaqSection geoName={geoName} slug={slug} />
 
       <section className="rounded-2xl border border-brand-200 bg-brand-100 p-6 text-center sm:p-8">
         <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">
@@ -133,10 +150,7 @@ export default async function ProvincePage({ params }: Props) {
           <Link href="/booking" className="btn-primary">
             예약 문의 보내기
           </Link>
-          <a
-            href={`tel:${SITE.phone.replace(/-/g, "")}`}
-            className="btn-ghost"
-          >
+          <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
             전화 {SITE.phone}
           </a>
         </div>

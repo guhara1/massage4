@@ -13,7 +13,9 @@ import {
   SafetyNoticeSection,
   RegionFaqSection,
   SectionHeader,
+  makeHeroDescription,
 } from "@/components/RegionContent";
+import { makeTitle, makeDescription } from "@/lib/regionVariants";
 
 type Props = { params: Promise<{ province: string; city: string }> };
 
@@ -28,12 +30,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const found = findCity(provinceSlug, citySlug);
   if (!found) return {};
   const { province, city } = found;
+  const fullName = `${province.shortName} ${city.name}`;
+  const slug = `${provinceSlug}-${citySlug}`;
+  const title = makeTitle(slug, city.name);
+  const description = makeDescription({
+    slug,
+    full: fullName,
+    short: city.name,
+    count: city.dongs.length,
+    countLabel: "행정동",
+    hours: SITE.hours,
+  });
   return {
-    title: `${city.name} 출장마사지 이용 안내`,
-    description: `${province.shortName} ${city.name} 전 ${city.dongs.length}개 행정동 출장마사지·홈타이 이용 안내. 정찰제 가격, 본인 인증 후 빠른 배정. 운영 시간 ${SITE.hours}.`,
+    title,
+    description,
     openGraph: {
-      title: `${city.name} 출장마사지 · ${SITE.name}`,
-      description: `${province.shortName} ${city.name} 전 ${city.dongs.length}개 행정동 출장마사지·홈타이 안내.`,
+      title: `${title} · ${SITE.name}`,
+      description,
     },
   };
 }
@@ -47,6 +60,9 @@ export default async function CityPage({ params }: Props) {
     a.name.localeCompare(b.name, "ko-KR"),
   );
   const geoName = city.name;
+  const slug = `${provinceSlug}-${citySlug}`;
+  const fullName = `${province.shortName} ${city.name}`;
+  const heroDesc = makeHeroDescription(slug, fullName);
 
   return (
     <article className="space-y-14">
@@ -64,10 +80,10 @@ export default async function CityPage({ params }: Props) {
         badge={`${province.shortName} · ${city.name}`}
         h1Top={`${city.name} 출장마사지 이용 안내`}
         h1Sub={`${city.name} 전 ${city.dongs.length}개 행정동 출장 가능`}
-        description={`${province.shortName} ${city.name} 권역에서 이용 가능한 출장마사지·홈타이 정보를 안내합니다. 타이·아로마·스웨디시 정찰제 가격으로 ${city.dongs.length}개 행정동에서 운영 중입니다.`}
+        description={heroDesc}
       />
 
-      <WhoUsesSection geoName={geoName} />
+      <WhoUsesSection geoName={geoName} slug={slug} />
 
       <section className="space-y-5">
         <SectionHeader title={`${city.name} 방문 가능 지역 안내`} />
@@ -94,12 +110,12 @@ export default async function CityPage({ params }: Props) {
         </div>
       </section>
 
-      <PreReservationSection geoName={geoName} />
-      <CoursesSection />
-      <ProcessSection />
-      <PriceInfoSection geoName={geoName} />
-      <SafetyNoticeSection />
-      <RegionFaqSection geoName={geoName} />
+      <PreReservationSection geoName={geoName} slug={slug} />
+      <CoursesSection slug={slug} />
+      <ProcessSection geoName={geoName} slug={slug} />
+      <PriceInfoSection geoName={geoName} slug={slug} />
+      <SafetyNoticeSection slug={slug} />
+      <RegionFaqSection geoName={geoName} slug={slug} />
 
       <section className="rounded-2xl border border-brand-200 bg-brand-100 p-6 text-center sm:p-8">
         <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">
@@ -112,10 +128,7 @@ export default async function CityPage({ params }: Props) {
           <Link href="/booking" className="btn-primary">
             예약 문의 보내기
           </Link>
-          <a
-            href={`tel:${SITE.phone.replace(/-/g, "")}`}
-            className="btn-ghost"
-          >
+          <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
             전화 {SITE.phone}
           </a>
         </div>

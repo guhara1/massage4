@@ -13,7 +13,9 @@ import {
   SafetyNoticeSection,
   RegionFaqSection,
   SectionHeader,
+  makeHeroDescription,
 } from "@/components/RegionContent";
+import { makeTitle, makeDescription } from "@/lib/regionVariants";
 
 type Props = {
   params: Promise<{ province: string; city: string; dong: string }>;
@@ -36,12 +38,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const found = findDong(province, city, dong);
   if (!found) return {};
   const fullName = `${found.province.shortName} ${found.city.name} ${found.dong.name}`;
+  const slug = `${province}-${city}-${dong}`;
+  const title = makeTitle(slug, fullName);
+  const description = makeDescription({
+    slug,
+    full: fullName,
+    short: found.dong.name,
+    hours: SITE.hours,
+  });
   return {
-    title: `${fullName} 출장마사지 이용 안내`,
-    description: `${fullName} 출장마사지·홈타이 이용 안내. 타이·아로마·스웨디시 정찰제, 본인 인증 후 빠른 배정. 운영 시간 ${SITE.hours}.`,
+    title,
+    description,
     openGraph: {
-      title: `${fullName} 출장마사지 · ${SITE.name}`,
-      description: `${fullName} 출장마사지·홈타이 이용 정보 안내.`,
+      title: `${title} · ${SITE.name}`,
+      description,
     },
   };
 }
@@ -59,6 +69,8 @@ export default async function DongPage({ params }: Props) {
 
   const fullName = `${province.shortName} ${city.name} ${dong.name}`;
   const geoName = dong.name;
+  const slug = `${provinceSlug}-${citySlug}-${dongSlug}`;
+  const heroDesc = makeHeroDescription(slug, fullName);
 
   return (
     <article className="space-y-14">
@@ -83,10 +95,10 @@ export default async function DongPage({ params }: Props) {
         badge={`${province.shortName} · ${city.name}`}
         h1Top={`${dong.name} 출장마사지 이용 안내`}
         h1Sub={`${fullName} 합법 출장 바디케어`}
-        description={`${fullName}에서 즉시 방문 가능한 합법 출장마사지·홈타이 서비스 안내 페이지입니다. 타이·아로마·스웨디시 정찰제 가격으로 운영하며, 휴대폰 본인 인증 후 예약이 확정됩니다.`}
+        description={heroDesc}
       />
 
-      <WhoUsesSection geoName={geoName} />
+      <WhoUsesSection geoName={geoName} slug={slug} />
 
       <section className="space-y-5">
         <SectionHeader title={`${geoName} 방문 가능 지역 안내`} />
@@ -118,12 +130,12 @@ export default async function DongPage({ params }: Props) {
         </div>
       </section>
 
-      <PreReservationSection geoName={geoName} />
-      <CoursesSection />
-      <ProcessSection />
-      <PriceInfoSection geoName={geoName} />
-      <SafetyNoticeSection />
-      <RegionFaqSection geoName={geoName} />
+      <PreReservationSection geoName={geoName} slug={slug} />
+      <CoursesSection slug={slug} />
+      <ProcessSection geoName={geoName} slug={slug} />
+      <PriceInfoSection geoName={geoName} slug={slug} />
+      <SafetyNoticeSection slug={slug} />
+      <RegionFaqSection geoName={geoName} slug={slug} />
 
       <section className="rounded-2xl border border-brand-200 bg-brand-100 p-6 text-center sm:p-8">
         <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">
@@ -136,10 +148,7 @@ export default async function DongPage({ params }: Props) {
           <Link href="/booking" className="btn-primary">
             예약 문의 보내기
           </Link>
-          <a
-            href={`tel:${SITE.phone.replace(/-/g, "")}`}
-            className="btn-ghost"
-          >
+          <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
             전화 {SITE.phone}
           </a>
         </div>

@@ -1,6 +1,20 @@
 import Link from "next/link";
-import { SERVICES, FAQS } from "@/lib/data";
+import { SERVICES } from "@/lib/data";
 import { SITE } from "@/lib/site";
+import {
+  pickN,
+  pickOne,
+  WHO_USES_POOL,
+  PRE_RESERVATION_POOL,
+  FAQ_POOL,
+  HERO_DESCRIPTION_VARIANTS,
+  WHO_INTRO_VARIANTS,
+  PRE_INTRO_VARIANTS,
+  FAQ_INTRO_VARIANTS,
+  SAFETY_INTRO_VARIANTS,
+  PROCESS_INTRO_VARIANTS,
+  PRICE_INTRO_VARIANTS,
+} from "@/lib/regionVariants";
 
 export function SectionHeader({ title }: { title: string }) {
   return (
@@ -11,7 +25,13 @@ export function SectionHeader({ title }: { title: string }) {
   );
 }
 
-function CardList({ items }: { items: { t: string; d: string }[] }) {
+function CardList({
+  items,
+  geoName,
+}: {
+  items: { t: string; d: (g: string) => string }[];
+  geoName: string;
+}) {
   return (
     <ul className="grid gap-3 sm:grid-cols-2">
       {items.map((it) => (
@@ -20,14 +40,11 @@ function CardList({ items }: { items: { t: string; d: string }[] }) {
           className="rounded-xl border border-brand-200 bg-brand-100 p-4"
         >
           <div className="flex items-start gap-2.5">
-            <span
-              aria-hidden
-              className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"
-            />
+            <span aria-hidden className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
             <div>
               <h3 className="text-sm font-bold text-brand-800">{it.t}</h3>
               <p className="mt-1 text-sm leading-relaxed text-white/85">
-                {it.d}
+                {it.d(geoName)}
               </p>
             </div>
           </div>
@@ -37,84 +54,51 @@ function CardList({ items }: { items: { t: string; d: string }[] }) {
   );
 }
 
-export function WhoUsesSection({ geoName }: { geoName: string }) {
+export function WhoUsesSection({
+  geoName,
+  slug,
+}: {
+  geoName: string;
+  slug: string;
+}) {
+  const items = pickN(slug, WHO_USES_POOL, 6, "who");
+  const intro = pickOne(slug, WHO_INTRO_VARIANTS, "who-intro")(geoName);
   return (
     <section className="space-y-5">
       <SectionHeader title={`${geoName} 출장마사지, 어떤 분들이 많이 찾을까?`} />
-      <CardList
-        items={[
-          {
-            t: "야근·회식 잦은 직장인",
-            d: `${geoName}에서 늦은 시간 퇴근 후 어깨·목 뭉침을 풀고 싶을 때 자주 이용합니다.`,
-          },
-          {
-            t: "출장·숙박 중인 비즈니스 고객",
-            d: "호텔·레지던스 등 임시 거주지에서 이동 부담 없이 받고 싶을 때 적합합니다.",
-          },
-          {
-            t: "외출이 어려운 부모님",
-            d: "아이를 재운 뒤 짧은 시간이라도 컨디션을 회복하고 싶은 경우 활용도가 높습니다.",
-          },
-          {
-            t: "운동 후 회복이 필요한 분",
-            d: "헬스·골프·러닝 등 강도 높은 운동 후 근피로 회복용으로 자주 찾으십니다.",
-          },
-          {
-            t: "잦은 야간 운전·장시간 좌식 직군",
-            d: "운전·사무 등 같은 자세를 오래 유지하시는 분의 허리·골반 이완에 도움됩니다.",
-          },
-          {
-            t: "수면의 질을 높이고 싶은 분",
-            d: "아로마 위주 부드러운 케어로 잠들기 전 컨디션 정돈을 원하실 때 추천합니다.",
-          },
-        ]}
-      />
+      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <CardList items={items} geoName={geoName} />
     </section>
   );
 }
 
-export function PreReservationSection({ geoName }: { geoName: string }) {
+export function PreReservationSection({
+  geoName,
+  slug,
+}: {
+  geoName: string;
+  slug: string;
+}) {
+  const items = pickN(slug, PRE_RESERVATION_POOL, 6, "pre");
+  const intro = pickOne(slug, PRE_INTRO_VARIANTS, "pre-intro")(geoName);
   return (
     <section className="space-y-5">
       <SectionHeader title={`${geoName} 출장마사지 예약 전 확인할 점`} />
-      <CardList
-        items={[
-          {
-            t: "휴대폰 본인 인증",
-            d: "예약은 본인 명의 휴대폰 인증 후 확정됩니다. 익명 예약은 받지 않습니다.",
-          },
-          {
-            t: "정확한 주소·동·호수",
-            d: `${geoName} 내 도착 주소를 동·호수까지 정확히 알려주셔야 안전하게 방문드릴 수 있습니다.`,
-          },
-          {
-            t: "주차 가능 여부",
-            d: "건물 내 방문객 주차가 가능한지 미리 알려주시면 도착 시간이 정확해집니다.",
-          },
-          {
-            t: "선호 시간대 여유 있게",
-            d: "교통 상황에 따라 ±15분 정도 여유를 두고 예약 시간을 잡아주시면 좋습니다.",
-          },
-          {
-            t: "만 19세 이상 여부",
-            d: "법적 보호 대상자(미성년) 단독 예약은 받지 않습니다. 보호자 동의 후 가능합니다.",
-          },
-          {
-            t: "건강 상태 사전 안내",
-            d: "임신·수술 직후·급성 염증 등 시술이 제한될 수 있는 상황을 미리 알려주세요.",
-          },
-        ]}
-      />
+      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
+      <CardList items={items} geoName={geoName} />
     </section>
   );
 }
 
-export function CoursesSection() {
+export function CoursesSection({ slug }: { slug: string }) {
+  // Vary the order of courses so it's not identical
+  const order = pickN(slug, [0, 1, 2], 3, "courses");
+  const ordered = order.map((i) => SERVICES[i]);
   return (
     <section className="space-y-5">
       <SectionHeader title="이용 가능한 마사지 코스" />
       <div className="grid gap-4 md:grid-cols-3">
-        {SERVICES.map((s) => (
+        {ordered.map((s) => (
           <article
             key={s.slug}
             className="rounded-2xl border border-brand-200 bg-brand-100 p-5"
@@ -146,7 +130,14 @@ export function CoursesSection() {
   );
 }
 
-export function ProcessSection() {
+export function ProcessSection({
+  geoName,
+  slug,
+}: {
+  geoName: string;
+  slug: string;
+}) {
+  const intro = pickOne(slug, PROCESS_INTRO_VARIANTS, "proc-intro")(geoName);
   const steps = [
     { n: 1, t: "상담 신청", d: "전화·카카오톡·예약 페이지 양식 중 편한 방법으로 신청합니다." },
     { n: 2, t: "본인 인증", d: "휴대폰 본인 인증 후 예약이 정식으로 확정됩니다." },
@@ -157,6 +148,7 @@ export function ProcessSection() {
   return (
     <section className="space-y-5">
       <SectionHeader title="예약부터 방문까지 진행 절차" />
+      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
       <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {steps.map((s) => (
           <li
@@ -175,10 +167,18 @@ export function ProcessSection() {
   );
 }
 
-export function PriceInfoSection({ geoName }: { geoName: string }) {
+export function PriceInfoSection({
+  geoName,
+  slug,
+}: {
+  geoName: string;
+  slug: string;
+}) {
+  const intro = pickOne(slug, PRICE_INTRO_VARIANTS, "price-intro")(geoName);
   return (
     <section className="space-y-5">
       <SectionHeader title="가격·운영시간·추가비용 안내" />
+      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
       <div className="grid gap-4 md:grid-cols-3">
         <div className="rounded-2xl border border-brand-200 bg-brand-100 p-5">
           <h3 className="text-sm font-bold text-brand-700">정찰제 가격</h3>
@@ -215,10 +215,12 @@ export function PriceInfoSection({ geoName }: { geoName: string }) {
   );
 }
 
-export function SafetyNoticeSection() {
+export function SafetyNoticeSection({ slug }: { slug: string }) {
+  const intro = pickOne(slug, SAFETY_INTRO_VARIANTS, "safety-intro")();
   return (
     <section className="space-y-5">
       <SectionHeader title="안전하고 건전한 이용을 위한 안내" />
+      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
       <div className="rounded-2xl border border-brand-200 bg-brand-100 p-6">
         <ul className="space-y-2.5 text-sm leading-relaxed text-white/90">
           <li className="flex gap-2">
@@ -247,38 +249,25 @@ export function SafetyNoticeSection() {
   );
 }
 
-export function RegionFaqSection({ geoName }: { geoName: string }) {
-  const items = [
-    {
-      q: `${geoName}에서 즉시 출장이 가능한가요?`,
-      a: `${geoName} 권역은 운영 시간 내 즉시 배정이 원칙이지만, 시간대와 교통 상황에 따라 지연될 수 있습니다. 예약 시 안내드립니다.`,
-    },
-    {
-      q: "심야 시간대도 예약할 수 있나요?",
-      a: `네, ${SITE.hours} 운영 중에는 심야 시간대도 예약 가능합니다. 심야는 일부 지역에서 출장비가 추가될 수 있습니다.`,
-    },
-    {
-      q: "결제 방법은 어떻게 되나요?",
-      a: "현장 결제 기준이며 현금·계좌이체·카드 단말 결제가 가능합니다. 사전 안내된 금액 외 추가 결제는 없습니다.",
-    },
-    {
-      q: "예약 변경·취소는 어떻게 하나요?",
-      a: "시술 시작 2시간 전까지는 무료로 변경·취소가 가능합니다. 이후에는 운영 정책에 따라 위약금이 발생할 수 있습니다.",
-    },
-    {
-      q: `${geoName} 외 지역도 출장 가능한가요?`,
-      a: "전국 17개 광역에 출장 운영 중이며, 인접 지역은 별도 상담 후 가능 여부를 안내드립니다.",
-    },
-  ];
+export function RegionFaqSection({
+  geoName,
+  slug,
+}: {
+  geoName: string;
+  slug: string;
+}) {
+  const items = pickN(slug, FAQ_POOL, 6, "faq");
+  const intro = pickOne(slug, FAQ_INTRO_VARIANTS, "faq-intro")(geoName);
   return (
     <section className="space-y-5">
       <SectionHeader title={`${geoName} 출장마사지 자주 묻는 질문`} />
+      <p className="text-sm leading-relaxed text-white/85">{intro}</p>
       <div className="divide-y divide-brand-200 overflow-hidden rounded-2xl border border-brand-200 bg-brand-100">
         {items.map((f, i) => (
           <details key={i} className="group p-5 sm:p-6">
             <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
               <span className="text-base font-semibold text-brand-800">
-                Q. {f.q}
+                Q. {f.q(geoName)}
               </span>
               <span
                 aria-hidden
@@ -287,7 +276,9 @@ export function RegionFaqSection({ geoName }: { geoName: string }) {
                 +
               </span>
             </summary>
-            <p className="mt-3 text-sm leading-relaxed text-white/85">{f.a}</p>
+            <p className="mt-3 text-sm leading-relaxed text-white/85">
+              {f.a(geoName)}
+            </p>
           </details>
         ))}
       </div>
@@ -324,13 +315,14 @@ export function HeroBlock({
         <Link href="/booking" className="btn-primary">
           예약 문의하기
         </Link>
-        <a
-          href={`tel:${SITE.phone.replace(/-/g, "")}`}
-          className="btn-ghost"
-        >
+        <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
           전화 상담 {SITE.phone}
         </a>
       </div>
     </header>
   );
+}
+
+export function makeHeroDescription(slug: string, fullName: string): string {
+  return pickOne(slug, HERO_DESCRIPTION_VARIANTS, "hero")(fullName);
 }
