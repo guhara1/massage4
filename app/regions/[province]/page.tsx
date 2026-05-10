@@ -15,6 +15,8 @@ import {
   SectionHeader,
   makeHeroDescription,
 } from "@/components/RegionContent";
+import PopularRegionLinks from "@/components/PopularRegionLinks";
+import { recommendForProvince } from "@/lib/regionRecommendations";
 import { makeTitle, makeDescription } from "@/lib/regionVariants";
 
 type Props = { params: Promise<{ province: string }> };
@@ -138,6 +140,7 @@ export default async function ProvincePage({ params }: Props) {
       <PriceInfoSection geoName={geoName} slug={slug} />
       <SafetyNoticeSection slug={slug} />
       <RegionFaqSection geoName={geoName} slug={slug} />
+      <PopularRegionLinks items={recommendForProvince(provinceSlug)} />
 
       <section className="rounded-2xl border border-brand-200 bg-brand-100 p-6 text-center sm:p-8">
         <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">
