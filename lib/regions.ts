@@ -564,6 +564,111 @@ export const PROVINCES: Province[] = [
           d("성건동", "seonggeon"), d("보문동", "bomun-gyeongju"),
         ],
       },
+      {
+        name: "안동", slug: "andong",
+        dongs: [
+          d("명륜동", "myeongnyun-andong"), d("옥동", "ok-andong"), d("송하동", "songha"),
+          d("강남동", "gangnam-andong"), d("풍산읍", "pungsan"),
+        ],
+      },
+      {
+        name: "구미", slug: "gumi",
+        dongs: [
+          d("송정동", "songjeong-gumi"), d("형곡동", "hyeonggok"), d("인동동", "indong"),
+          d("옥계동", "okgye"), d("진미동", "jinmi"), d("양포동", "yangpo"),
+        ],
+      },
+      {
+        name: "영주", slug: "yeongju",
+        dongs: [
+          d("영주동", "yeongju"), d("휴천동", "hyucheon"), d("가흥동", "gaheung"),
+          d("풍기읍", "punggi"), d("부석면", "buseok"),
+        ],
+      },
+      {
+        name: "영천", slug: "yeongcheon",
+        dongs: [
+          d("동부동", "dongbu-yeongcheon"), d("서부동", "seobu-yeongcheon"), d("완산동", "wansan"),
+          d("금호읍", "geumho-yeongcheon"), d("화북면", "hwabuk-yeongcheon"),
+        ],
+      },
+      {
+        name: "상주", slug: "sangju",
+        dongs: [
+          d("동성동", "dongseong"), d("서성동", "seoseong"), d("신흥동", "sinheung-sangju"),
+          d("함창읍", "hamchang"), d("청리면", "cheongni"),
+        ],
+      },
+      {
+        name: "문경", slug: "mungyeong",
+        dongs: [
+          d("점촌동", "jeomchon"), d("문경읍", "mungyeong"), d("가은읍", "gaeun"),
+          d("호계면", "hogye-mungyeong"), d("산북면", "sanbuk"),
+        ],
+      },
+      {
+        name: "김천", slug: "gimcheon",
+        dongs: [
+          d("자산동", "jasan"), d("평화남산동", "pyeonghwanamsan"), d("양금동", "yanggeum"),
+          d("대신동", "daesin"), d("부항면", "buhang"),
+        ],
+      },
+      {
+        name: "칠곡", slug: "chilgok",
+        dongs: [
+          d("왜관읍", "waegwan"), d("약목면", "yangmok"), d("북삼읍", "buksam"),
+          d("석적읍", "seokjeok"), d("가산면", "gasan-chilgok"),
+        ],
+      },
+      {
+        name: "진주", slug: "jinju",
+        dongs: [
+          d("상대동", "sangdae"), d("칠암동", "chilam"), d("평거동", "pyeonggeo"),
+          d("하대동", "hadae"), d("신안동", "sinan"), d("충무공동", "chungmugong"),
+        ],
+      },
+      {
+        name: "통영", slug: "tongyeong",
+        dongs: [
+          d("무전동", "mujeon"), d("정량동", "jeongnyang"), d("미수동", "misu"),
+          d("봉평동", "bongpyeong"), d("광도면", "gwangdo"),
+        ],
+      },
+      {
+        name: "사천", slug: "sacheon",
+        dongs: [
+          d("동서동", "dongseo"), d("동서금동", "dongseogeum"), d("벌용동", "beoryong"),
+          d("향촌동", "hyangchon"), d("사천읍", "sacheon"),
+        ],
+      },
+      {
+        name: "거제", slug: "geoje",
+        dongs: [
+          d("고현동", "gohyeon"), d("옥포동", "okpo"), d("장승포동", "jangseungpo"),
+          d("사등면", "sadeung"), d("일운면", "irun"),
+        ],
+      },
+      {
+        name: "양산", slug: "yangsan",
+        dongs: [
+          d("물금읍", "mulgeum"), d("동면", "dongmyeon"), d("양주동", "yangju-yangsan"),
+          d("서창동", "seochang-yangsan"), d("평산동", "pyeongsan"),
+        ],
+      },
+      {
+        name: "밀양", slug: "miryang",
+        dongs: [
+          d("내일동", "naeil"), d("내이동", "naei"), d("삼문동", "sammun"),
+          d("가곡동", "gagok"), d("삼랑진읍", "samnangjin"),
+        ],
+      },
+      {
+        name: "함안", slug: "haman",
+        dongs: [
+          d("가야읍", "gaya"), d("칠원읍", "chirwon"), d("함안면", "haman"),
+          d("산인면", "sanin"), d("칠북면", "chilbuk"),
+        ],
+      },
     ],
   },
   {
