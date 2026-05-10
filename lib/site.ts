@@ -21,6 +21,7 @@ export const NAV = [
   { href: "/services", label: "서비스 / 가격" },
   { href: "/price/", label: "가격 안내" },
   { href: "/regions", label: "지역 안내" },
+  { href: "/station/", label: "지하철역" },
   { href: "/guide/", label: "이용 가이드" },
   { href: "/trust/", label: "안전·신뢰 센터" },
   { href: "/booking", label: "예약 / 문의" },

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PROVINCES } from "@/lib/regions";
+import { STATIONS } from "@/lib/stations";
 
 export const dynamic = "force-static";
 import { SERVICE_CATEGORIES } from "@/lib/serviceCategories";
@@ -41,6 +42,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   push("/reservation/", 0.9);
   push("/guide/", 0.8);
   push("/trust/", 0.7, "yearly");
+  push("/station/", 0.9);
+
+  // Subway station detail pages
+  for (const s of STATIONS) push(`/station/${s.slug}/`, 0.7);
 
   // Service detail
   for (const c of SERVICE_CATEGORIES) push(`/service/${c.slug}/`, 0.8);
