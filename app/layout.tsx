@@ -43,6 +43,21 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "tLvzDmZ30YWnEXQJb7t1JHxf1OROGMjRlc_Yk5PiBkw",
+    other: {
+      "naver-site-verification":
+        "482cbecb0e5b8c192b1b34f470e91955ffd58fee",
+    },
+  },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [
+        { url: "/rss.xml", title: `${SITE.name} 공지사항 RSS` },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({
