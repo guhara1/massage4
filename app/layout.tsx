@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingCallBar from "@/components/FloatingCallBar";
 import { SITE } from "@/lib/site";
 
 const SITE_TITLE = "VIP출장 | 전국 출장마사지·홈타이 예약 안내";
@@ -41,10 +42,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="min-h-screen bg-[var(--bg)] antialiased">
+      <body className="min-h-screen bg-[var(--bg)] pb-24 antialiased sm:pb-0">
         <Header />
         <main className="container-narrow py-10 sm:py-14">{children}</main>
         <Footer />
+        <FloatingCallBar />
       </body>
     </html>
   );
