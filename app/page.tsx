@@ -14,7 +14,7 @@ export default function HomePage() {
             {SITE.name}
             <span className="block text-brand-500">집·사무실·숙소로 찾아가는 이완 케어</span>
           </h1>
-          <p className="mt-5 text-base leading-relaxed text-brand-800/80 sm:text-lg">
+          <p className="mt-5 text-base leading-relaxed text-white/80 sm:text-lg">
             VIP 출장은 <b>사업자 등록을 마친 합법 바디케어 출장 서비스</b>입니다.
             타이·아로마·스웨디시 등 이완 목적의 바디케어를 자격을 갖춘
             테라피스트가 직접 방문해 제공해 드립니다.
@@ -38,7 +38,7 @@ export default function HomePage() {
         <div className="card relative overflow-hidden">
           <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-100 blur-2xl" />
           <h2 className="text-lg font-bold text-brand-800">합법·안전 운영 약속</h2>
-          <ul className="mt-4 space-y-3 text-sm text-brand-800/85">
+          <ul className="mt-4 space-y-3 text-sm text-white/85">
             <Bullet>사업자 등록 후 <b>이완 목적 바디케어</b>로 정식 운영</Bullet>
             <Bullet>스포츠마사지·아로마테라피 등 <b>관련 자격 보유자</b> 우선 채용</Bullet>
             <Bullet><b>정찰제 가격</b>·시간 단위 안내로 추가 결제 요구 없음</Bullet>
@@ -62,7 +62,7 @@ export default function HomePage() {
           {SERVICES.map((s) => (
             <Link key={s.slug} href="/services" className="card transition hover:-translate-y-1 hover:shadow-md">
               <h3 className="text-lg font-bold text-brand-800">{s.name}</h3>
-              <p className="mt-2 text-sm text-brand-800/80">{s.summary}</p>
+              <p className="mt-2 text-sm text-white/80">{s.summary}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {s.highlights.map((h) => (
                   <span key={h} className="rounded-full bg-brand-50 px-2.5 py-1 text-xs text-brand-700">
@@ -78,9 +78,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-brand-200 bg-brand-100 px-6 py-12 text-brand-700 sm:px-12">
+      <section className="rounded-3xl border border-brand-200 bg-brand-100 px-6 py-12 text-white sm:px-12">
         <h2 className="text-2xl font-bold text-brand-800 sm:text-3xl">예약은 간단합니다.</h2>
-        <p className="mt-2 text-brand-700/80">
+        <p className="mt-2 text-white/80">
           상담 → 예약 확정 → 테라피스트 방문 → 케어 진행 순으로 안내드립니다.
         </p>
         <ol className="mt-6 grid gap-4 sm:grid-cols-4">
@@ -95,7 +95,7 @@ export default function HomePage() {
                 {step.n}
               </div>
               <p className="mt-3 font-semibold text-brand-800">{step.t}</p>
-              <p className="mt-1 text-sm text-brand-700/80">{step.d}</p>
+              <p className="mt-1 text-sm text-white/80">{step.d}</p>
             </li>
           ))}
         </ol>
@@ -115,7 +115,7 @@ export default function HomePage() {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-brand-200 bg-brand-100 px-3 py-3">
-      <div className="text-xs text-brand-700/70">{label}</div>
+      <div className="text-xs text-white/70">{label}</div>
       <div className="mt-1 text-sm font-semibold text-brand-800">{value}</div>
     </div>
   );

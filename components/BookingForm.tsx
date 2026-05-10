@@ -54,7 +54,7 @@ export default function BookingForm() {
     return (
       <div className="card">
         <h2 className="text-lg font-bold text-brand-800">문의가 접수되었습니다</h2>
-        <p className="mt-2 text-sm text-brand-800/85">
+        <p className="mt-2 text-sm text-white/85">
           입력해 주신 연락처로 잠시 후 상담 연락을 드립니다. 빠른 확정을 원하시면
           고객센터 <b>{SITE.phone}</b> 로 직접 연락 주셔도 좋습니다.
         </p>
@@ -164,15 +164,15 @@ export default function BookingForm() {
         </Field>
       </div>
 
-      <div className="rounded-xl border border-brand-100 bg-brand-50/50 p-4 text-sm text-brand-800/85">
+      <div className="rounded-xl border border-brand-100 bg-brand-50/50 p-4 text-sm text-white/85">
         선택하신 코스 예상 금액:{" "}
         <b className="text-brand-700">{selectedPrice.toLocaleString()}원</b>
-        <span className="ml-1 text-xs text-brand-700/70">
+        <span className="ml-1 text-xs text-white/70">
           (지역에 따라 출장비가 별도 안내될 수 있습니다)
         </span>
       </div>
 
-      <label className="flex items-start gap-2 text-sm text-brand-800/85">
+      <label className="flex items-start gap-2 text-sm text-white/85">
         <input
           type="checkbox"
           checked={agree}
@@ -182,7 +182,7 @@ export default function BookingForm() {
         <span>
           본인은 만 19세 이상이며, 본 서비스가 이완 목적의 합법 바디케어임을
           확인했습니다. 입력한 연락처로 예약 상담을 받는 데 동의합니다.
-          <span className="ml-1 text-xs text-brand-700/70">(필수)</span>
+          <span className="ml-1 text-xs text-white/70">(필수)</span>
         </span>
       </label>
 
@@ -200,7 +200,7 @@ export default function BookingForm() {
 }
 
 const selectStyle =
-  "w-full rounded-lg border border-brand-200 bg-brand-100 px-3 py-2.5 text-sm text-brand-800 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30";
+  "w-full rounded-lg border border-brand-200 bg-brand-100 px-3 py-2.5 text-sm text-white placeholder:text-white/40 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -214,8 +214,8 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function Row({ k, v }: { k: string; v: string }) {
   return (
     <div className="flex justify-between border-b border-brand-100 py-1.5">
-      <dt className="text-brand-700/70">{k}</dt>
-      <dd className="font-medium text-brand-900">{v}</dd>
+      <dt className="text-white/70">{k}</dt>
+      <dd className="font-medium text-white">{v}</dd>
     </div>
   );
 }

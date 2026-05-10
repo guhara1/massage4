@@ -30,7 +30,7 @@ export default function ServicesPage() {
                 ))}
               </div>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-brand-800/85">
+            <p className="mt-3 text-sm leading-relaxed text-white/85">
               {s.description}
             </p>
 
@@ -46,10 +46,10 @@ export default function ServicesPage() {
                 <tbody className="divide-y divide-brand-100">
                   {s.durations.map((d) => (
                     <tr key={d.minutes}>
-                      <td className="px-4 py-3 text-brand-800">
+                      <td className="px-4 py-3 text-white">
                         {s.name} {d.minutes}분
                       </td>
-                      <td className="px-4 py-3 text-right text-brand-800/80">
+                      <td className="px-4 py-3 text-right text-white/80">
                         {d.minutes}분
                       </td>
                       <td className="px-4 py-3 text-right font-semibold text-brand-700">
@@ -66,7 +66,7 @@ export default function ServicesPage() {
 
       <section className="card">
         <h2 className="text-lg font-bold text-brand-800">유의사항</h2>
-        <ul className="mt-3 space-y-2 text-sm text-brand-800/85">
+        <ul className="mt-3 space-y-2 text-sm text-white/85">
           <li>· 본 서비스는 이완 목적의 바디케어이며, 의료 행위(질병 진단·치료)가 아닙니다.</li>
           <li>· 임산부, 수술 직후, 급성 염증·감염성 질환 보유자 등은 시술이 제한될 수 있습니다.</li>
           <li>· 음주 상태에서는 안전을 위해 시술이 거절될 수 있습니다.</li>

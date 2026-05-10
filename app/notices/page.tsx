@@ -15,9 +15,9 @@ export default function NoticesPage() {
           <li key={i} className="p-6">
             <div className="flex items-baseline justify-between">
               <h2 className="text-base font-semibold text-brand-800">{n.title}</h2>
-              <time className="text-xs text-brand-700/70">{n.date}</time>
+              <time className="text-xs text-white/70">{n.date}</time>
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-brand-800/85">{n.body}</p>
+            <p className="mt-2 text-sm leading-relaxed text-white/85">{n.body}</p>
           </li>
         ))}
       </ul>

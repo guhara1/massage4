@@ -19,7 +19,7 @@ export default function RegionsPage() {
           <section key={region.name} className="card">
             <div className="flex items-baseline justify-between">
               <h2 className="text-lg font-bold text-brand-800">{region.name}</h2>
-              <span className="text-xs text-brand-700/70">
+              <span className="text-xs text-white/70">
                 총 {region.cities.length}개 지역
               </span>
             </div>
@@ -42,7 +42,7 @@ export default function RegionsPage() {
           <h2 className="text-lg font-bold text-brand-800">
             우리 지역이 보이지 않나요?
           </h2>
-          <p className="mt-1 text-sm text-brand-800/80">
+          <p className="mt-1 text-sm text-white/80">
             인접 지역에서 출장이 가능한 경우가 많습니다. 문의 주시면 가능 여부를 안내해 드립니다.
           </p>
         </div>

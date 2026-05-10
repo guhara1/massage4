@@ -23,7 +23,7 @@ export default function ReviewsPage() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-brand-800">{r.nickname}</p>
-                  <p className="text-xs text-brand-700/70">{r.region}</p>
+                  <p className="text-xs text-white/70">{r.region}</p>
                 </div>
               </div>
               <div aria-label={`별점 ${r.rating}점`} className="text-sm text-brand-500">
@@ -31,8 +31,8 @@ export default function ReviewsPage() {
                 <span className="text-brand-200">{"★".repeat(5 - r.rating)}</span>
               </div>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-brand-800/90">{r.body}</p>
-            <div className="mt-4 flex justify-between text-xs text-brand-700/70">
+            <p className="mt-4 text-sm leading-relaxed text-white/90">{r.body}</p>
+            <div className="mt-4 flex justify-between text-xs text-white/70">
               <span>{r.service}</span>
               <time>{r.date}</time>
             </div>

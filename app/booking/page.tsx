@@ -20,29 +20,29 @@ export default function BookingPage() {
       <aside className="space-y-6">
         <div className="card">
           <h2 className="text-lg font-bold text-brand-800">바로 연결</h2>
-          <ul className="mt-4 space-y-3 text-sm text-brand-800/85">
+          <ul className="mt-4 space-y-3 text-sm text-white/85">
             <li>
-              <span className="text-brand-700/70">고객센터</span>
-              <p className="text-base font-semibold text-brand-800">{SITE.phone}</p>
+              <span className="text-white/70">고객센터</span>
+              <p className="text-base font-semibold text-white">{SITE.phone}</p>
             </li>
             <li>
-              <span className="text-brand-700/70">카카오톡</span>
-              <p className="text-base font-semibold text-brand-800">{SITE.kakao}</p>
+              <span className="text-white/70">카카오톡</span>
+              <p className="text-base font-semibold text-white">{SITE.kakao}</p>
             </li>
             <li>
-              <span className="text-brand-700/70">이메일</span>
-              <p className="text-base font-semibold text-brand-800">{SITE.email}</p>
+              <span className="text-white/70">이메일</span>
+              <p className="text-base font-semibold text-white">{SITE.email}</p>
             </li>
             <li>
-              <span className="text-brand-700/70">운영시간</span>
-              <p className="text-sm text-brand-800">{SITE.hours}</p>
+              <span className="text-white/70">운영시간</span>
+              <p className="text-sm text-white">{SITE.hours}</p>
             </li>
           </ul>
         </div>
 
         <div className="card">
           <h2 className="text-lg font-bold text-brand-800">예약 안내</h2>
-          <ul className="mt-3 space-y-2 text-sm text-brand-800/85">
+          <ul className="mt-3 space-y-2 text-sm text-white/85">
             <li>· 예약은 휴대폰 본인 인증 완료 후 확정됩니다.</li>
             <li>· 만 19세 미만은 이용이 제한됩니다.</li>
             <li>· 시술 2시간 전까지 무료 변경·취소가 가능합니다.</li>
