@@ -4,11 +4,13 @@ import { SERVICE_CATEGORIES } from "@/lib/serviceCategories";
 import { RESERVATION_SECTIONS } from "@/lib/reservationSections";
 import { PRICE_SECTIONS } from "@/lib/priceSections";
 import { GUIDE_SECTIONS } from "@/lib/guideSections";
+import { TRUST_SECTIONS } from "@/lib/trustSections";
 
 const SERVICE_PARENT_LABEL = "서비스 / 가격";
 const RESERVATION_PARENT_LABEL = "예약 / 문의";
 const PRICE_PARENT_LABEL = "가격 안내";
 const GUIDE_PARENT_LABEL = "이용 가이드";
+const TRUST_PARENT_LABEL = "안전·신뢰 센터";
 
 export default function Header() {
   return (
@@ -35,6 +37,9 @@ export default function Header() {
             }
             if (item.label === GUIDE_PARENT_LABEL) {
               return <GuideDropdown key={item.href} />;
+            }
+            if (item.label === TRUST_PARENT_LABEL) {
+              return <TrustDropdown key={item.href} />;
             }
             return (
               <Link
@@ -190,6 +195,30 @@ function GuideDropdown() {
           <DropdownItem
             key={s.slug}
             href={`/guide/${s.slug}/`}
+            title={s.name}
+            desc={s.tagline}
+          />
+        ))}
+      </DropdownPanel>
+    </div>
+  );
+}
+
+function TrustDropdown() {
+  return (
+    <div className="group relative">
+      <DropdownTrigger href="/trust/" label="안전·신뢰 센터" />
+      <DropdownPanel>
+        <DropdownItem
+          href="/trust/"
+          title="안전·신뢰 센터 홈"
+          desc="운영 정책·정보 보호 한눈에 보기"
+        />
+        <div className="my-2 h-px bg-brand-200/50" />
+        {TRUST_SECTIONS.map((s) => (
+          <DropdownItem
+            key={s.slug}
+            href={`/trust/${s.slug}/`}
             title={s.name}
             desc={s.tagline}
           />
