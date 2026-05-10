@@ -43,14 +43,13 @@ export default function TrustOverviewPage() {
               </a>
             </div>
           </div>
-          <div className="relative min-h-[280px] border-t border-brand-300 md:col-span-1 md:min-h-0 md:border-l md:border-t-0">
+          <div className="relative min-h-[320px] bg-brand-50 md:col-span-1 md:min-h-0">
             <img
               src="/hero-vip.jpg"
               alt="안전·신뢰 센터"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-contain object-center"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-brand-100/40 md:bg-gradient-to-r md:from-brand-100/40 md:via-transparent md:to-transparent" />
           </div>
         </div>
       </header>
