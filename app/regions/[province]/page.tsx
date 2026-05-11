@@ -18,6 +18,8 @@ import {
 import PopularRegionLinks from "@/components/PopularRegionLinks";
 import { recommendForProvince } from "@/lib/regionRecommendations";
 import { makeTitle, makeDescription } from "@/lib/regionVariants";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd";
+import { getRegionFaqItems } from "@/lib/regionVariants";
 
 type Props = { params: Promise<{ province: string }> };
 
@@ -66,9 +68,17 @@ export default async function ProvincePage({ params }: Props) {
   const geoName = province.shortName;
   const slug = `province-${provinceSlug}`;
   const heroDesc = makeHeroDescription(slug, province.name);
+  const faqItems = getRegionFaqItems(slug, geoName);
+  const crumbs = [
+    { name: "전국 지역", url: "/regions" },
+    { name: province.shortName, url: `/regions/${province.slug}` },
+  ];
+
 
   return (
     <article className="space-y-14">
+      <BreadcrumbJsonLd items={crumbs} />
+      <FaqJsonLd items={faqItems} />
       <nav className="flex items-center gap-2 text-xs text-white/60">
         <Link href="/regions" className="hover:text-brand-600">전국 지역</Link>
         <span aria-hidden>›</span>

@@ -8,6 +8,7 @@ import {
 } from "@/lib/trustSections";
 import { SectionHeader } from "@/components/RegionContent";
 import { Prose } from "@/components/Prose";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,9 +37,16 @@ export default async function TrustDetailPage({ params }: Props) {
   if (!s) notFound();
 
   const others = TRUST_SECTIONS.filter((x) => x.slug !== s.slug);
+  const crumbs = [
+    { name: "안전·신뢰 센터", url: "/trust/" },
+    { name: s.name, url: `/trust/${s.slug}/` },
+  ];
+
 
   return (
     <article className="space-y-14">
+      <BreadcrumbJsonLd items={crumbs} />
+      {s.faq && <FaqJsonLd items={s.faq} />}
       <nav className="flex items-center gap-2 text-xs text-white/60">
         <Link href="/trust/" className="hover:text-brand-600">안전·신뢰 센터</Link>
         <span aria-hidden>›</span>

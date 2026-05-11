@@ -22,6 +22,8 @@ import {
 } from "@/components/RegionContent";
 import { Prose } from "@/components/Prose";
 import { makeTitle, makeDescription, pickOne, HERO_DESCRIPTION_VARIANTS } from "@/lib/regionVariants";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd";
+import { getRegionFaqItems } from "@/lib/regionVariants";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -66,9 +68,17 @@ export default async function StationPage({ params }: Props) {
   const geoName = `${s.name}역`;
   const seedKey = `station-${s.slug}`;
   const heroDesc = pickOne(seedKey, HERO_DESCRIPTION_VARIANTS, "hero")(fullName);
+  const faqItems = getRegionFaqItems(seedKey, geoName);
+  const crumbs = [
+    { name: "지하철역별 안내", url: "/station/" },
+    { name: `${s.name}역`, url: `/station/${s.slug}/` },
+  ];
+
 
   return (
     <article className="space-y-14">
+      <BreadcrumbJsonLd items={crumbs} />
+      <FaqJsonLd items={faqItems} />
       <nav className="flex flex-wrap items-center gap-2 text-xs text-white/60">
         <Link href="/station/" className="hover:text-brand-600">지하철역별 안내</Link>
         <span aria-hidden>›</span>

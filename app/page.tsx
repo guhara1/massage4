@@ -3,14 +3,18 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { SERVICES, FAQS } from "@/lib/data";
 import { PROVINCES, totalDongCount } from "@/lib/regions";
+import { WebSiteJsonLd, FaqJsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
 export default function HomePage() {
+  const homeFaq = FAQS.map((f) => ({ q: f.q, a: f.a }));
   return (
     <div className="space-y-20">
+      <WebSiteJsonLd />
+      <FaqJsonLd items={homeFaq} />
       <section className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
         <div>
           <span className="inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-700">

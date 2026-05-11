@@ -284,3 +284,12 @@ export function makeDescription(args: {
   const fn = pickOne(args.slug, DESCRIPTION_VARIANTS, "desc");
   return fn(args);
 }
+
+/** Returns the rendered FAQ items for a given page — kept in sync with
+ *  the visual RegionFaqSection so JSON-LD schema matches what users see. */
+export function getRegionFaqItems(slug: string, geoName: string): { q: string; a: string }[] {
+  return pickN(slug, FAQ_POOL, 6, "faq").map((it) => ({
+    q: it.q(geoName),
+    a: it.a(geoName),
+  }));
+}

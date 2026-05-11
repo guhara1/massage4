@@ -8,6 +8,7 @@ import {
 } from "@/lib/serviceCategories";
 import { SectionHeader } from "@/components/RegionContent";
 import { Prose } from "@/components/Prose";
+import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/components/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,9 +37,22 @@ export default async function ServiceDetailPage({ params }: Props) {
   if (!c) notFound();
 
   const others = SERVICE_CATEGORIES.filter((s) => s.slug !== c.slug);
+  const crumbs = [
+    { name: "서비스 안내", url: "/service/" },
+    { name: c.name, url: `/service/${c.slug}/` },
+  ];
+
 
   return (
     <article className="space-y-14">
+      <BreadcrumbJsonLd items={crumbs} />
+      <FaqJsonLd items={c.faq} />
+      <ServiceJsonLd
+        name={c.name}
+        description={c.intro}
+        durations={c.durations}
+        url={`/service/${c.slug}/`}
+      />
       <nav className="flex items-center gap-2 text-xs text-white/60">
         <Link href="/service/" className="hover:text-brand-600">서비스 안내</Link>
         <span aria-hidden>›</span>

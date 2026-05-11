@@ -109,3 +109,66 @@ export function FaqJsonLd({
     />
   );
 }
+
+/** WebSite — emitted on home only */
+export function WebSiteJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${BASE}#website`,
+    url: BASE,
+    name: SITE.name,
+    inLanguage: "ko-KR",
+    publisher: { "@id": `${BASE}#org` },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+/** Service — applied per-course on /service/[slug]/ */
+export function ServiceJsonLd({
+  name,
+  description,
+  durations,
+  url,
+}: {
+  name: string;
+  description: string;
+  durations: { minutes: number; price: number }[];
+  url: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: name,
+    name: `${name} 출장`,
+    description,
+    url: url.startsWith("http") ? url : `${BASE}${url}`,
+    provider: { "@id": `${BASE}#org` },
+    areaServed: { "@type": "Country", name: "대한민국" },
+    offers: durations.map((d) => ({
+      "@type": "Offer",
+      name: `${name} ${d.minutes}분`,
+      price: d.price,
+      priceCurrency: "KRW",
+      availability: "https://schema.org/InStock",
+      eligibleQuantity: {
+        "@type": "QuantitativeValue",
+        value: d.minutes,
+        unitText: "분",
+      },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}

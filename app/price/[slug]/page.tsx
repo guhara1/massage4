@@ -8,6 +8,7 @@ import {
 } from "@/lib/priceSections";
 import { SectionHeader } from "@/components/RegionContent";
 import { Prose } from "@/components/Prose";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,9 +37,16 @@ export default async function PriceDetailPage({ params }: Props) {
   if (!s) notFound();
 
   const others = PRICE_SECTIONS.filter((x) => x.slug !== s.slug);
+  const crumbs = [
+    { name: "가격 안내", url: "/price/" },
+    { name: s.name, url: `/price/${s.slug}/` },
+  ];
+
 
   return (
     <article className="space-y-14">
+      <BreadcrumbJsonLd items={crumbs} />
+      <FaqJsonLd items={s.faq} />
       <nav className="flex items-center gap-2 text-xs text-white/60">
         <Link href="/price/" className="hover:text-brand-600">가격 안내</Link>
         <span aria-hidden>›</span>

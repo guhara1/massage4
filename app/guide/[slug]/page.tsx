@@ -8,6 +8,7 @@ import {
 } from "@/lib/guideSections";
 import { SectionHeader } from "@/components/RegionContent";
 import { Prose } from "@/components/Prose";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,9 +37,16 @@ export default async function GuideDetailPage({ params }: Props) {
   if (!s) notFound();
 
   const others = GUIDE_SECTIONS.filter((x) => x.slug !== s.slug);
+  const crumbs = [
+    { name: "이용 가이드", url: "/guide/" },
+    { name: s.name, url: `/guide/${s.slug}/` },
+  ];
+
 
   return (
     <article className="space-y-14">
+      <BreadcrumbJsonLd items={crumbs} />
+      <FaqJsonLd items={s.faq} />
       <nav className="flex items-center gap-2 text-xs text-white/60">
         <Link href="/guide/" className="hover:text-brand-600">이용 가이드</Link>
         <span aria-hidden>›</span>
