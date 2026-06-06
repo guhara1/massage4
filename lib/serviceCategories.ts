@@ -42,8 +42,8 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
     durations: [
       { minutes: 60, price: 90000 },
-      { minutes: 90, price: 120000 },
-      { minutes: 120, price: 150000 },
+      { minutes: 90, price: 150000 },
+      { minutes: 120, price: 180000 },
     ],
     cautions: [
       "감귤류·견과류·라텍스 등 알레르기가 있다면 사전 안내 필요",
@@ -87,8 +87,8 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
     durations: [
       { minutes: 60, price: 90000 },
-      { minutes: 90, price: 120000 },
-      { minutes: 120, price: 150000 },
+      { minutes: 90, price: 150000 },
+      { minutes: 120, price: 180000 },
     ],
     cautions: [
       "급성 염증·혈전 의심 부위는 시술 제외됩니다",
@@ -176,9 +176,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "마무리 후 가벼운 휴식 시간",
     ],
     durations: [
-      { minutes: 60, price: 80000 },
-      { minutes: 90, price: 110000 },
-      { minutes: 120, price: 140000 },
+      { minutes: 60, price: 90000 },
+      { minutes: 90, price: 150000 },
+      { minutes: 120, price: 180000 },
     ],
     cautions: [
       "골다공증·디스크 보유자는 사전 상담이 필수입니다",
