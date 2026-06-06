@@ -185,7 +185,7 @@ export function PriceInfoSection({
         <div className="rounded-2xl border border-brand-200 bg-brand-100 p-5">
           <h3 className="text-sm font-bold text-brand-700">정찰제 가격</h3>
           <p className="mt-2 text-base font-extrabold text-white">
-            60분 80,000원~
+            60분 90,000원~
           </p>
           <p className="mt-2 text-xs leading-relaxed text-white/75">
             모든 코스는 사전에 안내된 금액으로만 진행됩니다. 현장에서 추가

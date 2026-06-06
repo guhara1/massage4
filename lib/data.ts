@@ -15,9 +15,9 @@ export const SERVICES: Service[] = [
     description:
       "지압과 스트레칭을 결합한 정통 타이 스타일 바디케어로, 장시간 앉아 일하시는 분들의 뭉친 어깨·허리 이완에 적합합니다. 시술자는 타이마사지 전문 교육 과정을 이수한 테라피스트로 구성되어 있습니다.",
     durations: [
-      { minutes: 60, price: 80000 },
-      { minutes: 90, price: 110000 },
-      { minutes: 120, price: 140000 },
+      { minutes: 60, price: 90000 },
+      { minutes: 90, price: 150000 },
+      { minutes: 120, price: 180000 },
     ],
     highlights: ["전신 스트레칭", "지압 위주", "장시간 좌식 직업군 추천"],
   },
@@ -29,8 +29,8 @@ export const SERVICES: Service[] = [
       "라벤더·일랑일랑 등 천연 에센셜 오일을 사용하여 부드러운 슬라이딩 동작 위주로 진행됩니다. 수면의 질 개선과 컨디션 회복을 원하시는 분께 추천드립니다.",
     durations: [
       { minutes: 60, price: 90000 },
-      { minutes: 90, price: 120000 },
-      { minutes: 120, price: 150000 },
+      { minutes: 90, price: 150000 },
+      { minutes: 120, price: 180000 },
     ],
     highlights: ["천연 에센셜 오일 사용", "부드러운 슬라이딩", "수면·컨디션 회복"],
   },
@@ -42,8 +42,8 @@ export const SERVICES: Service[] = [
       "전신을 길게 쓸어주는 이펄러지(effleurage) 동작 중심으로 혈행과 림프 순환을 돕는 클래식 스웨디시 스타일입니다. 근피로 누적·운동 후 회복기에 적합합니다.",
     durations: [
       { minutes: 60, price: 90000 },
-      { minutes: 90, price: 120000 },
-      { minutes: 120, price: 150000 },
+      { minutes: 90, price: 150000 },
+      { minutes: 120, price: 180000 },
     ],
     highlights: ["근피로 회복", "혈행·림프 순환", "운동 후 추천"],
   },
