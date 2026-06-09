@@ -48,7 +48,7 @@ export default function HomePage() {
         <div className="relative overflow-hidden rounded-3xl border border-brand-300 bg-brand-100 shadow-[0_0_60px_-15px_rgba(34,197,94,0.55)]">
           <div className="aspect-square w-full overflow-hidden">
             <img
-              src="/hero-vip.jpg"
+              src="/region-hero.png"
               alt="VIP출장 - 전국 출장마사지·홈타이 안내"
               className="h-full w-full object-cover"
               width={1024}
