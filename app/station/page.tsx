@@ -55,7 +55,7 @@ export default function StationOverviewPage() {
           </div>
           <div className="relative min-h-[320px] bg-brand-50 md:col-span-1 md:min-h-0">
             <img
-              src="/hero-vip.jpg"
+              src="/region-hero.png"
               alt="지하철역별 출장마사지 안내"
               className="absolute inset-0 h-full w-full object-contain object-center"
               loading="eager"
