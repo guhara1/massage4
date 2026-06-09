@@ -75,8 +75,16 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-brand-100">
-        <div className="container-narrow py-4 text-center text-xs text-white/60">
-          © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+        <div className="container-narrow flex flex-col items-center gap-2 py-4 text-center text-xs text-white/60 sm:flex-row sm:justify-between">
+          <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+          <a
+            href="https://t.me/googleseolab"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/70 hover:text-brand-600"
+          >
+            웹사이트 제작문의
+          </a>
         </div>
       </div>
     </footer>
