@@ -17,6 +17,21 @@ export const SITE = {
   },
 } as const;
 
+// 특정 지역(시·도)에서만 노출할 전용 전화번호.
+// 키는 lib/regions.ts 의 province slug 와 일치해야 합니다.
+export const REGION_PHONE_OVERRIDES: Record<string, string> = {
+  jeju: "0508-202-4723",
+};
+
+// province slug 에 해당하는 전화번호를 반환합니다.
+// 별도 지정된 지역이 없으면 기본 대표번호(SITE.phone)를 사용합니다.
+export function phoneForProvince(provinceSlug?: string | null): string {
+  if (provinceSlug && REGION_PHONE_OVERRIDES[provinceSlug]) {
+    return REGION_PHONE_OVERRIDES[provinceSlug];
+  }
+  return SITE.phone;
+}
+
 export const NAV = [
   { href: "/services", label: "서비스 / 가격" },
   { href: "/price/", label: "가격 안내" },

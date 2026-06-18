@@ -294,11 +294,13 @@ export function HeroBlock({
   h1Top,
   h1Sub,
   description,
+  phone = SITE.phone,
 }: {
   badge: string;
   h1Top: string;
   h1Sub: string;
   description: string;
+  phone?: string;
 }) {
   return (
     <header className="overflow-hidden rounded-3xl border border-brand-200 bg-brand-100 shadow-[0_0_60px_-15px_rgba(34,197,94,0.45)]">
@@ -323,8 +325,8 @@ export function HeroBlock({
             <Link href="/booking" className="btn-primary">
               예약 문의하기
             </Link>
-            <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
-              전화 상담 {SITE.phone}
+            <a href={`tel:${phone.replace(/-/g, "")}`} className="btn-ghost">
+              전화 상담 {phone}
             </a>
           </div>
         </div>

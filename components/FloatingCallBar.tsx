@@ -1,8 +1,15 @@
+"use client";
+
 import Link from "next/link";
-import { SITE } from "@/lib/site";
+import { usePathname } from "next/navigation";
+import { SITE, phoneForProvince } from "@/lib/site";
 
 export default function FloatingCallBar() {
-  const tel = SITE.phone.replace(/-/g, "");
+  const pathname = usePathname() ?? "";
+  // /regions/<province>/... 경로일 때 해당 지역 전용 번호를 사용합니다.
+  const match = pathname.match(/^\/regions\/([^/]+)/);
+  const phone = match ? phoneForProvince(match[1]) : SITE.phone;
+  const tel = phone.replace(/-/g, "");
   return (
     <div
       className="fixed inset-x-0 bottom-0 z-50 sm:hidden"
@@ -15,7 +22,7 @@ export default function FloatingCallBar() {
         <a
           href={`tel:${tel}`}
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-3 text-base font-extrabold text-brand-50 shadow-[0_0_24px_-2px_rgba(34,197,94,0.85)] transition active:scale-[0.98]"
-          aria-label={`전화로 상담 ${SITE.phone}`}
+          aria-label={`전화로 상담 ${phone}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +37,7 @@ export default function FloatingCallBar() {
               clipRule="evenodd"
             />
           </svg>
-          <span>전화 상담 {SITE.phone}</span>
+          <span>전화 상담 {phone}</span>
         </a>
         <Link
           href="/booking"

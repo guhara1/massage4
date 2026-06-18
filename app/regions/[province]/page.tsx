@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PROVINCES, findProvince } from "@/lib/regions";
-import { SITE } from "@/lib/site";
+import { SITE, phoneForProvince } from "@/lib/site";
 import {
   HeroBlock,
   WhoUsesSection,
@@ -66,6 +66,7 @@ export default async function ProvincePage({ params }: Props) {
     a.name.localeCompare(b.name, "ko-KR"),
   );
   const geoName = province.shortName;
+  const phone = phoneForProvince(provinceSlug);
   const slug = `province-${provinceSlug}`;
   const heroDesc = makeHeroDescription(slug, province.name);
   const faqItems = getRegionFaqItems(slug, geoName);
@@ -90,6 +91,7 @@ export default async function ProvincePage({ params }: Props) {
         h1Top={`${province.shortName} 출장마사지 이용 안내`}
         h1Sub={`${province.cities.length}개 시·군·구 · ${dongCount}개 행정동 출장`}
         description={heroDesc}
+        phone={phone}
       />
 
       <WhoUsesSection geoName={geoName} slug={slug} />
@@ -164,8 +166,8 @@ export default async function ProvincePage({ params }: Props) {
           <Link href="/booking" className="btn-primary">
             예약 문의 보내기
           </Link>
-          <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
-            전화 {SITE.phone}
+          <a href={`tel:${phone.replace(/-/g, "")}`} className="btn-ghost">
+            전화 {phone}
           </a>
         </div>
       </section>

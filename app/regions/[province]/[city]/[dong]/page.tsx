@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PROVINCES, findDong } from "@/lib/regions";
-import { SITE } from "@/lib/site";
+import { SITE, phoneForProvince } from "@/lib/site";
 import {
   HeroBlock,
   WhoUsesSection,
@@ -74,6 +74,7 @@ export default async function DongPage({ params }: Props) {
 
   const fullName = `${province.shortName} ${city.name} ${dong.name}`;
   const geoName = dong.name;
+  const phone = phoneForProvince(provinceSlug);
   const slug = `${provinceSlug}-${citySlug}-${dongSlug}`;
   const heroDesc = makeHeroDescription(slug, fullName);
   const faqItems = getRegionFaqItems(slug, geoName);
@@ -111,6 +112,7 @@ export default async function DongPage({ params }: Props) {
         h1Top={`${dong.name} 출장마사지 이용 안내`}
         h1Sub={`${fullName} 합법 출장 바디케어`}
         description={heroDesc}
+        phone={phone}
       />
 
       <WhoUsesSection geoName={geoName} slug={slug} />
@@ -166,8 +168,8 @@ export default async function DongPage({ params }: Props) {
           <Link href="/booking" className="btn-primary">
             예약 문의 보내기
           </Link>
-          <a href={`tel:${SITE.phone.replace(/-/g, "")}`} className="btn-ghost">
-            전화 {SITE.phone}
+          <a href={`tel:${phone.replace(/-/g, "")}`} className="btn-ghost">
+            전화 {phone}
           </a>
         </div>
       </section>
