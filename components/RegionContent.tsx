@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SERVICES } from "@/lib/data";
-import { SITE } from "@/lib/site";
+import { SITE, type RegionContact } from "@/lib/site";
 import { Prose } from "@/components/Prose";
 import {
   pickN,
@@ -294,13 +294,13 @@ export function HeroBlock({
   h1Top,
   h1Sub,
   description,
-  phone = SITE.phone,
+  contact = { kind: "phone", phone: SITE.phone },
 }: {
   badge: string;
   h1Top: string;
   h1Sub: string;
   description: string;
-  phone?: string;
+  contact?: RegionContact;
 }) {
   return (
     <header className="overflow-hidden rounded-3xl border border-brand-200 bg-brand-100 shadow-[0_0_60px_-15px_rgba(34,197,94,0.45)]">
@@ -325,9 +325,16 @@ export function HeroBlock({
             <Link href="/booking" className="btn-primary">
               예약 문의하기
             </Link>
-            <a href={`tel:${phone.replace(/-/g, "")}`} className="btn-ghost">
-              전화 상담 {phone}
-            </a>
+            {contact.kind === "phone" ? (
+              <a
+                href={`tel:${contact.phone.replace(/-/g, "")}`}
+                className="btn-ghost"
+              >
+                전화 상담 {contact.phone}
+              </a>
+            ) : (
+              <span className="btn-ghost cursor-default">{contact.label}</span>
+            )}
           </div>
         </div>
         <div className="relative min-h-[320px] bg-brand-50 md:col-span-1 md:min-h-0">

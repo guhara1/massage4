@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NAV, SITE } from "@/lib/site";
+import FooterContact from "@/components/FooterContact";
 
 export default function Footer() {
   return (
@@ -68,7 +69,7 @@ export default function Footer() {
             <div className="flex gap-2">
               <dt className="w-20 shrink-0 text-white/60">고객센터</dt>
               <dd>
-                {SITE.phone} · {SITE.hours}
+                <FooterContact />
               </dd>
             </div>
           </dl>

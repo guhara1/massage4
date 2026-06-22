@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PROVINCES, findDong } from "@/lib/regions";
-import { SITE, phoneForProvince } from "@/lib/site";
+import { SITE, contactForProvince } from "@/lib/site";
 import {
   HeroBlock,
   WhoUsesSection,
@@ -74,7 +74,7 @@ export default async function DongPage({ params }: Props) {
 
   const fullName = `${province.shortName} ${city.name} ${dong.name}`;
   const geoName = dong.name;
-  const phone = phoneForProvince(provinceSlug);
+  const contact = contactForProvince(provinceSlug);
   const slug = `${provinceSlug}-${citySlug}-${dongSlug}`;
   const heroDesc = makeHeroDescription(slug, fullName);
   const faqItems = getRegionFaqItems(slug, geoName);
@@ -112,7 +112,7 @@ export default async function DongPage({ params }: Props) {
         h1Top={`${dong.name} 출장마사지 이용 안내`}
         h1Sub={`${fullName} 합법 출장 바디케어`}
         description={heroDesc}
-        phone={phone}
+        contact={contact}
       />
 
       <WhoUsesSection geoName={geoName} slug={slug} />
@@ -168,9 +168,16 @@ export default async function DongPage({ params }: Props) {
           <Link href="/booking" className="btn-primary">
             예약 문의 보내기
           </Link>
-          <a href={`tel:${phone.replace(/-/g, "")}`} className="btn-ghost">
-            전화 {phone}
-          </a>
+          {contact.kind === "phone" ? (
+            <a
+              href={`tel:${contact.phone.replace(/-/g, "")}`}
+              className="btn-ghost"
+            >
+              전화 {contact.phone}
+            </a>
+          ) : (
+            <span className="btn-ghost cursor-default">{contact.label}</span>
+          )}
         </div>
       </section>
     </article>

@@ -32,6 +32,28 @@ export function phoneForProvince(provinceSlug?: string | null): string {
   return SITE.phone;
 }
 
+// 전화번호를 노출하지 않고 안내 문구만 표시할 지역(시·도).
+// 키는 province slug, 값은 전화번호 대신 보여줄 문구입니다.
+export const REGION_PHONE_HIDDEN: Record<string, string> = {
+  gangwon: "광고문의 환영",
+};
+
+// 지역별 연락처 표시 방식.
+// - kind "phone": 전화번호 노출 (tel 링크 사용)
+// - kind "label": 전화번호 숨김, 안내 문구만 노출
+export type RegionContact =
+  | { kind: "phone"; phone: string }
+  | { kind: "label"; label: string };
+
+export function contactForProvince(
+  provinceSlug?: string | null,
+): RegionContact {
+  if (provinceSlug && REGION_PHONE_HIDDEN[provinceSlug]) {
+    return { kind: "label", label: REGION_PHONE_HIDDEN[provinceSlug] };
+  }
+  return { kind: "phone", phone: phoneForProvince(provinceSlug) };
+}
+
 export const NAV = [
   { href: "/services", label: "서비스 / 가격" },
   { href: "/price/", label: "가격 안내" },
