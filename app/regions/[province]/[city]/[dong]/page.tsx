@@ -176,7 +176,9 @@ export default async function DongPage({ params }: Props) {
               전화 {contact.phone}
             </a>
           ) : (
-            <span className="btn-ghost cursor-default">{contact.label}</span>
+            <span className="btn-ghost pointer-events-none cursor-default select-none">
+              {contact.label}
+            </span>
           )}
         </div>
       </section>

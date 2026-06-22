@@ -333,7 +333,9 @@ export function HeroBlock({
                 전화 상담 {contact.phone}
               </a>
             ) : (
-              <span className="btn-ghost cursor-default">{contact.label}</span>
+              <span className="btn-ghost pointer-events-none cursor-default select-none">
+                {contact.label}
+              </span>
             )}
           </div>
         </div>

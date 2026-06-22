@@ -41,7 +41,7 @@ export default function FloatingCallBar() {
           </a>
         ) : (
           <span
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-3 text-base font-extrabold text-brand-50 shadow-[0_0_24px_-2px_rgba(34,197,94,0.85)]"
+            className="pointer-events-none flex flex-1 select-none items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-3 text-base font-extrabold text-brand-50 shadow-[0_0_24px_-2px_rgba(34,197,94,0.85)]"
           >
             {contact.label}
           </span>
