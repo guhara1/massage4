@@ -242,7 +242,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     slug: "premium-massage",
     name: "프리미엄 마사지",
     shortName: "프리미엄",
-    tagline: "VIP 전용 종합 풀케어 코스",
+    tagline: "최상급 전용 종합 풀케어 코스",
     intro:
       "프리미엄 마사지는 라곰 출장마사지의 최상위 코스로, 아로마·스웨디시·페이셜 등 여러 케어 기법을 한 번의 방문에 결합해 진행하는 종합 풀케어 코스입니다. 이용자의 컨디션과 선호에 맞춰 흐름을 설계하며, 충분한 시간 동안 깊이 있는 휴식과 컨디션 정돈을 제공합니다.",
     benefits: [

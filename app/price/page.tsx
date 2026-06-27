@@ -98,7 +98,7 @@ export default function PriceOverviewPage() {
             <h3 className="text-sm font-bold text-brand-700">시술 중 추가 결제</h3>
             <p className="mt-2 text-base font-extrabold text-white">절대 없음</p>
             <p className="mt-2 text-xs leading-relaxed text-white/75">
-              현장에서 “추가 옵션·VIP” 명목의 결제 요구는 일절 하지 않습니다.
+              현장에서 “추가 옵션·프리미엄” 명목의 결제 요구는 일절 하지 않습니다.
             </p>
           </div>
           <div className="rounded-2xl border border-brand-200 bg-brand-100 p-5">
