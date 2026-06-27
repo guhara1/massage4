@@ -1,15 +1,15 @@
 export const SITE = {
-  name: "VIP 출장",
+  name: "라곰 출장마사지",
   tagline: "전국 합법 바디케어 출장 예약 플랫폼",
   description:
-    "VIP 출장은 사업자 등록을 마친 합법 바디케어 출장 서비스입니다. 타이·아로마·스웨디시 등 이완 목적의 바디케어를 자격을 갖춘 테라피스트가 자택, 사무실, 숙소로 직접 방문해 제공해 드립니다.",
+    "라곰 출장마사지는 사업자 등록을 마친 합법 바디케어 출장 서비스입니다. 타이·아로마·스웨디시 등 이완 목적의 바디케어를 자격을 갖춘 테라피스트가 자택, 사무실, 숙소로 직접 방문해 제공해 드립니다.",
   phone: "0508-202-4683",
-  kakao: "@vip-chuljang",
-  email: "help@vip-chuljang.example",
+  kakao: "@lagom-massage",
+  email: "help@lagom-massage.example",
   hours: "매일 13:00 ~ 익일 08:00 (연중무휴)",
   address: "서울특별시 강남구 (본사)",
   business: {
-    name: "VIP 출장",
+    name: "라곰 출장마사지",
     owner: "홍길동",
     registrationNumber: "000-00-00000",
     mailOrder: "제2026-서울강남-00000호",

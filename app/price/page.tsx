@@ -8,7 +8,7 @@ import { Prose } from "@/components/Prose";
 export const metadata: Metadata = {
   title: "가격 안내 - 정찰제 정책·코스·지역·추가비용 한눈에",
   description:
-    "VIP출장 가격 안내 허브. 기본 코스 가격, 지역별 출장비, 시간별 코스, 추가 비용 정책, 가격 확인 전 주의사항을 항목별로 자세히 정리했습니다.",
+    "라곰 출장마사지 가격 안내 허브. 기본 코스 가격, 지역별 출장비, 시간별 코스, 추가 비용 정책, 가격 확인 전 주의사항을 항목별로 자세히 정리했습니다.",
 };
 
 export default function PriceOverviewPage() {
@@ -28,7 +28,7 @@ export default function PriceOverviewPage() {
                 </span>
               </h1>
               <Prose
-                text={`VIP출장의 모든 가격 정보를 한곳에 정리했습니다. 코스별 기본
+                text={`라곰 출장마사지의 모든 가격 정보를 한곳에 정리했습니다. 코스별 기본
                 가격, 지역별 출장비 정책, 시간 길이에 따른 차이, 그리고
                 가격 확인 시 주의해야 할 점까지 항목별로 자세히 안내드립니다.`}
                 className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"

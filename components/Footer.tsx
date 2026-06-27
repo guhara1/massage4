@@ -9,7 +9,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-sm font-bold text-brand-50">
-              VIP
+              라곰
             </span>
             <span className="text-lg font-bold text-brand-800">{SITE.name}</span>
           </div>

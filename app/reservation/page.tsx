@@ -8,7 +8,7 @@ import { Prose } from "@/components/Prose";
 export const metadata: Metadata = {
   title: "예약 안내 - 절차·시간·결제·확인사항 한눈에 보기",
   description:
-    "VIP출장 예약 안내 허브. 예약 방법, 이용 절차, 운영 시간, 방문 가능 장소, 결제 안내, 예약 전 확인사항을 항목별로 자세히 정리했습니다.",
+    "라곰 출장마사지 예약 안내 허브. 예약 방법, 이용 절차, 운영 시간, 방문 가능 장소, 결제 안내, 예약 전 확인사항을 항목별로 자세히 정리했습니다.",
 };
 
 export default function ReservationOverviewPage() {
@@ -28,7 +28,7 @@ export default function ReservationOverviewPage() {
                 </span>
               </h1>
               <Prose
-                text={`VIP출장 예약과 관련된 모든 정보를 한곳에 정리했습니다. 처음
+                text={`라곰 출장마사지 예약과 관련된 모든 정보를 한곳에 정리했습니다. 처음
                 이용하시는 분이라면 아래 항목을 차례대로 살펴보시면 매끄럽게
                 예약을 진행하실 수 있습니다.`}
                 className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"

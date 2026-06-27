@@ -77,7 +77,7 @@ export default function ServiceOverviewPage() {
       <section className="space-y-5">
         <SectionHeader title="코스별 특징과 추천 대상" />
         <p className="text-sm leading-relaxed text-white/85">
-          VIP 출장은 6가지 코스를 운영합니다. 본인의 컨디션과 목적에 맞는 코스를 선택해 보세요.
+          라곰 출장마사지는 6가지 코스를 운영합니다. 본인의 컨디션과 목적에 맞는 코스를 선택해 보세요.
         </p>
         <div className="grid gap-4 md:grid-cols-2">
           {SERVICE_CATEGORIES.map((c) => (

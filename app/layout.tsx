@@ -6,7 +6,7 @@ import FloatingCallBar from "@/components/FloatingCallBar";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 
-const SITE_TITLE = "VIP출장 | 전국 출장마사지·홈타이 예약 안내";
+const SITE_TITLE = "라곰 출장마사지 | 전국 출장마사지·홈타이 예약 안내";
 const SITE_DESCRIPTION =
   "전국 출장마사지·홈타이 이용 정보. 지역별 방문 범위·코스·가격·예약 절차를 한곳에서 확인하세요.";
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   applicationName: SITE.name,
   keywords: [
     "출장마사지", "홈타이", "전국 출장", "타이마사지", "아로마", "스웨디시",
-    "출장 바디케어", "VIP출장", "지역별 출장",
+    "출장 바디케어", "라곰 출장마사지", "지역별 출장",
   ],
   openGraph: {
     title: SITE_TITLE,

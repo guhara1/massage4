@@ -21,11 +21,11 @@ export default function HomePage() {
             전국 출장마사지·홈타이 예약 안내
           </span>
           <h1 className="mt-4 text-3xl font-extrabold leading-tight text-brand-900 sm:text-5xl">
-            VIP출장
+            라곰 출장마사지
             <span className="block text-brand-500">집·사무실·숙소로 찾아가는 출장마사지</span>
           </h1>
           <p className="mt-5 text-base leading-relaxed text-white/80 sm:text-lg">
-            VIP출장은 전국 주요 지역에서 이용 가능한{" "}
+            라곰 출장마사지는 전국 주요 지역에서 이용 가능한{" "}
             <b>출장마사지·홈타이 정보</b>를 안내합니다. 타이, 아로마, 스웨디시
             등 이완 중심의 테라피를 지역별 방문 가능 범위에 따라 확인해보세요.
           </p>
@@ -49,7 +49,7 @@ export default function HomePage() {
           <div className="aspect-square w-full overflow-hidden">
             <img
               src="/region-hero.png"
-              alt="VIP출장 - 전국 출장마사지·홈타이 안내"
+              alt="라곰 출장마사지 - 전국 출장마사지·홈타이 안내"
               className="h-full w-full object-cover"
               width={1024}
               height={1024}

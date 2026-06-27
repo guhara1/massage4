@@ -8,7 +8,7 @@ import { Prose } from "@/components/Prose";
 export const metadata: Metadata = {
   title: "안전·신뢰 센터 - 운영 원칙·테라피스트 기준·고객 보호",
   description:
-    "VIP출장 안전·신뢰 센터. 업체 운영 원칙, 테라피스트 확인 기준, 고객 보호 정책, 불법 서비스 금지 안내, 개인정보 처리방침, 이용약관까지 한곳에서 확인하세요.",
+    "라곰 출장마사지 안전·신뢰 센터. 업체 운영 원칙, 테라피스트 확인 기준, 고객 보호 정책, 불법 서비스 금지 안내, 개인정보 처리방침, 이용약관까지 한곳에서 확인하세요.",
 };
 
 export default function TrustOverviewPage() {
@@ -28,7 +28,7 @@ export default function TrustOverviewPage() {
                 </span>
               </h1>
               <Prose
-                text={`VIP출장이 어떤 원칙으로 운영되는지, 테라피스트는 어떻게
+                text={`라곰 출장마사지가 어떤 원칙으로 운영되는지, 테라피스트는 어떻게
                 관리되는지, 이용자 정보는 어떻게 보호되는지 한곳에 정리했습니다.
                 개인정보 처리방침과 이용약관도 본 센터에서 확인하실 수 있습니다.`}
                 className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base"

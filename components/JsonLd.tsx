@@ -13,7 +13,7 @@ export function OrganizationJsonLd() {
     "@type": ["LocalBusiness", "Organization"],
     "@id": `${BASE}#org`,
     name: SITE.name,
-    alternateName: "VIP 출장",
+    alternateName: "라곰 출장마사지",
     description: SITE.description,
     url: BASE,
     telephone: SITE.phone,
